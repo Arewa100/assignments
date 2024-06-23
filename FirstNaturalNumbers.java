@@ -6,7 +6,7 @@ public class FirstNaturalNumbers {
 	
 	Scanner input = new Scanner(System.in);
 			
-	//declaring variables
+
 	
 		int number;
 		int sentinel = 0;

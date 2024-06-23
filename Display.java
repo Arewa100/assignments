@@ -1,5 +1,3 @@
-//program to display shapes using asterics
-
 public class Display {
 	public static void main(String[] args) {
 		System.out.println("Welcome friend, do you like the shapes below");

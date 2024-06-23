@@ -6,7 +6,7 @@ public class Factorial {
 
 	Scanner input = new Scanner(System.in);
 	
-	//declaing the variables 
+
 		int number;
 		int counter = 0;
 		int total = 1;
