@@ -21,6 +21,7 @@ public class DoWhile {
 		secondNumber = input.nextInt();
 
 		sum = (firstNumber + secondNumber);
+
 	System.out.printf("the sum of the two inputs is %d%n", sum);
 		
 	System.out.println("to continue press c");
