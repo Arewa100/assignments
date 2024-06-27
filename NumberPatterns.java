@@ -4,6 +4,7 @@ public class NumberPatterns {
 
 		int vertical;
 		int horizontal;
+
 	for(vertical = 0; vertical <= 6; vertical++) {
 		for(horizontal = 1; horizontal <= vertical; horizontal++) {
 			System.out.print(horizontal);
