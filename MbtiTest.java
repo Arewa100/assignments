@@ -29,18 +29,23 @@ public class MbtiTest {
 			System.out.println("A: expend energy, enjoy groups   B: conserve energy, emjoy one on one");
 
 				char response = input.next().charAt(0);
-					if(response == 'A') {
-					aCounter = aCounter + 1;
-} 					else {
-					bCounter = bCounter + 1;
+			
+			switch(response) {
+				case 'A': 
+					aCounter++;
+					break;
+				case 'B':
+					bCounter++;
+					break;
+				default:
+					
 }
-	
 					
 					
 
 			
 		counter = counter + 1;
 }
-		System.out,println(case A:)		
+		System.out.println()		
 }
 }
