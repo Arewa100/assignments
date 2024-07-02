@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class FactorOfNumber {
+public class PrimeFactor {
 	public static void main(String[] args) {
 		System.out.println("Welcome my friend. You are the handicap you must face\n");
 	
@@ -20,12 +20,16 @@ public class FactorOfNumber {
 		
 		if(theArgument == 0 && counter != 1) {
 
-			factor = counter;
-			System.out.println(factor);
+			//factor = counter;
+			//System.out.println(factor);
 			numberOffactors = numberOffactors + 1;
 }
 		counter = counter + 1;
 }
-		System.out.printf("the number of factor that can divide %d, is %d %n", number, numberOffactors);
+		if(numberOffactors == 1) {
+			System.out.printf("%d is a prime number", number);
+}		else {
+			System.out.printf("%d is not prime number", number);
+}
 }
 }
