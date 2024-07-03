@@ -57,4 +57,13 @@ public class Kata {
 }			
 		return factorCounter;
 }
+	public static long factorialOf(int number) {
+
+		long total = 1;
+			while(number > 0) {
+				int result = number--;
+			total = total * result;
+}
+		return total;
+}
 }
