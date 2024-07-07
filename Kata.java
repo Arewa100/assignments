@@ -66,4 +66,5 @@ public class Kata {
 }
 		return total;
 }
+	public static 
 }
