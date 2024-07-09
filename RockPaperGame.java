@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class RockPaperGame {
@@ -6,7 +6,7 @@ public class RockPaperGame {
 		System.out.println("Welcome to my rock paper scissors game\n");
 
 	Scanner input = new Scanner(System.in);
-	Random value = new Random();
+	SecureRandom value = new SecureRandom();
 
 		
 		
@@ -16,7 +16,7 @@ public class RockPaperGame {
 		System.out.println("Enter any number between 0, 1, 2");
 			user = input.nextInt();
 
-		computer = value.nextInt(2-0) + 0; 
+		computer = value.nextInt(2) + 1; 
 			
 			switch(computer) {
 				case 0: 
