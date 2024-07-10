@@ -8,29 +8,32 @@ public class LagbajaSchools {
 
 		int numberOfStudents;
 		int numberOfSubjects;
-		int counter = 0;
-		int[] studentHead = {1, 2, 3, 4};
 
 	System.out.println("How many students do you have\n");
 		numberOfStudents = input.nextInt();
+		 
 
 	System.out.println("How many subjects do they offer\n");
 		 numberOfSubjects = input.nextInt();
+		 int[] score = new int[numberOfStudents];
+		
 
 	System.out.println("Saving >>>>>>>>>>>>>>>>>>");
 	System.out.println("Saved successfully\n");
 
-	while(counter <= numberOfStudents) {
-		
-		System.out.printf("Entering score for student %d%n", studentHead[counter]);
-			
-		System.out.printf("Enter score for subject %d%n", countHead[counter]);
-			
+	for(int studentCounterr = 1; studentCounterr <= numberOfStudents; studentCounterr++) {
 
+		for(int subjectCounter = 1; subjectCounter <= numberOfSubjects; subjectCounter++) {
+			System.out.printf("Entering score for student %d%n", studentCounterr);
+				
+			System.out.printf("Enter score for subject %d%n", subjectCounter);
+				score[subjectCounter] = input.nextInt();
+}			
 
+			int[] firstStudent = new int[numberOfSubjects];
 
-		counter = counter + 1;
+			System.out.println(" ");
 }
-	
+			System.out.println(firstStudent[1]);
 }
 }
