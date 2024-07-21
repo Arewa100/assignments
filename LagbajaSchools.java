@@ -15,7 +15,10 @@ public class LagbajaSchools {
 
 	System.out.println("How many subjects do they offer\n");
 		 numberOfSubjects = input.nextInt();
-		 int[] score = new int[numberOfStudents];
+		
+		scoreSize = (numberOfStudents * numberOfSubjects);
+
+		 int[] score = new int[scoreSize];
 		
 
 	System.out.println("Saving >>>>>>>>>>>>>>>>>>");
@@ -23,17 +26,14 @@ public class LagbajaSchools {
 
 	for(int studentCounterr = 1; studentCounterr <= numberOfStudents; studentCounterr++) {
 
-		for(int subjectCounter = 1; subjectCounter <= numberOfSubjects; subjectCounter++) {
+		for(int subjectCounter = 0; subjectCounter < numberOfSubjects; subjectCounter++) {
 			System.out.printf("Entering score for student %d%n", studentCounterr);
 				
-			System.out.printf("Enter score for subject %d%n", subjectCounter);
+			System.out.printf("Enter score for subject %d%n", subjectCounter+1);
 				score[subjectCounter] = input.nextInt();
 }			
 
-			int[] firstStudent = new int[numberOfSubjects];
-
-			System.out.println(" ");
 }
-			System.out.println(firstStudent[1]);
+			System.out.print(score.length);
 }
 }
