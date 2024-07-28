@@ -56,6 +56,33 @@ public class LagbajaSchools {
 		System.out.printf("%6s %6s %6s%n", "TOT", "AVG", "POS");
 
 	}
+		
+
+		//writing for the position
+		int positionScoreCount = 0;
+		Double[] averagePerStudent = new Double[numberOfStudents];
+
+	for(int counter = 0; counter < numberOfStudents; counter++) {
+			double total = 0;
+			double average = 0;
+			double position = 0;
+
+		for(int scorecount = 0; scorecount < numberOfSubjects; scorecount++) {
+			total = total + score[positionScoreCount];
+
+			positionScoreCount = positionScoreCount + 1;
+		}
+
+		average  = (total / numberOfSubjects);
+		averagePerStudent[counter] = average;
+	}
+
+		//System.out.print(Arrays.toString(averagePerStudent));
+		double maximum = //I AM HERE 
+		double minimum = 
+	for(int positioncounter = 0; positioncounter < averagePerStudent.length; positioncounter++) {
+		//TRYING TO COMPARE AVERAGES AND RETURN THE POSITIONS
+	}
 
 
 		int printScoreCount = 0;
