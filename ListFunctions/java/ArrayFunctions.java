@@ -21,4 +21,42 @@ public class ArrayFunctions {
 		
 		return reversedArray;
 }
+	public String find(int element, int[] numbers) {
+			int checkElement = 0;
+			String message = "";
+		for(int count = 0; count < numbers.length; count++) {
+			checkElement = numbers[count];
+			if(element == checkElement) {
+				message = "element occurs";
+				return message;
+			} 
+
+		}
+		
+		return "element does not exist";
+}
+	public int[] oddpositions(int[] numbers) {
+		int[] elementsOnOddPosition = new int[6];
+
+		int element = 0;
+		for(int count = 0; count < numbers.length; count++) {
+			if(count % 2 == 1) {
+				element = numbers[count];
+				elementsOnOddPosition[count] = element;
+			}
+		}
+		return elementsOnOddPosition;
+}
+	public int[] evenpositions(int[] numbers) {
+		int[] elementsOnEvenPosition = new int[6];
+
+		int element = 0;
+		for(int count = 0; count < numbers.length; count++) {
+			if(count % 2 == 0) {
+				element = numbers[count];
+				elementsOnEvenPosition[count] = element;
+			}
+		}
+		return elementsOnEvenPosition;
+}
 }	
