@@ -9,7 +9,16 @@ public class ArrayFunctions {
 		}
 		return largestNumber;
 }
-	public int[] reverse(int[] numbers) {
-		int[] reveredArray = new
+	public int[] reverse(int[] numbers) {     
+		int[] reversedArray = new int[6];   
+		int arrayElement = 0;
+		int count = 0;
+		for(int counter = numbers.length-1 ; counter >= 0; counter--) {   
+			arrayElement = numbers[counter];
+			reversedArray[count] = arrayElement;
+			count = count + 1;
+		}	
+		
+		return reversedArray;
 }
-}
+}	
