@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import java.util.Arrays;
 
 public class ArrayFunctionsTest {
 	
@@ -61,5 +60,22 @@ public class ArrayFunctionsTest {
 		
 		assertArrayEquals(valueAtOddPositions, result);
 }
+	@Test
+	public void testingIfArrayFunctionCanComputeRunningTotalOfAList() {
+		ArrayFunctions feedback = new ArrayFunctions();
+		
+		int[] list = {8, 7, 6, 5, 4, 3};
 
+		int result = feedback.arraytotal(list);
+		
+		assertEquals(33, result);
 }
+}
+
+
+
+
+
+
+
+

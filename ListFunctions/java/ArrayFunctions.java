@@ -59,4 +59,11 @@ public class ArrayFunctions {
 		}
 		return elementsOnEvenPosition;
 }
+	public int arraytotal(int[] number) {
+		int total = 0;
+		for(int num: number) {
+		total = total + num;
+		}
+		return total;
+}
 }	
