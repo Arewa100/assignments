@@ -70,6 +70,14 @@ public class ArrayFunctionsTest {
 		
 		assertEquals(33, result);
 }
+	@Test 
+	public void testingIfFunctionMethodToCheckIfAStringIsPalindromeWorksProperly() {
+		ArrayFunctions feedback = new ArrayFunctions();
+	
+		boolean result = feedback.palindromeString("hannah");
+		
+		assertEquals(true, result);
+}
 }
 
 

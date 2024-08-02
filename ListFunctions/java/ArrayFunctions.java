@@ -66,4 +66,16 @@ public class ArrayFunctions {
 		}
 		return total;
 }
+	public boolean palindromeString(String words) {
+		String newWord = new String("");
+		final int STRING_LENGTH = words.length();
+		for(int count = STRING_LENGTH-1; count >= 0; count--) {
+			newWord = newWord + words.charAt(count);
+		}
+		if(words.equals(newWord)) {
+		return true;
+		} else {
+		return false;
+		}
+}
 }	
