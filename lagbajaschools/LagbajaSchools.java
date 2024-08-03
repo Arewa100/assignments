@@ -78,8 +78,8 @@ public class LagbajaSchools {
 	}
 
 		//System.out.print(Arrays.toString(averagePerStudent));
-		double maximum = //I AM HERE 
-		double minimum = 
+		//double maximum = //I AM HERE 
+		//double minimum = 
 	for(int positioncounter = 0; positioncounter < averagePerStudent.length; positioncounter++) {
 		//TRYING TO COMPARE AVERAGES AND RETURN THE POSITIONS
 	}
