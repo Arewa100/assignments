@@ -11,6 +11,8 @@ public class CreditCardValidationTest {
 	
 	int result = feedback.doubleEverySecondNumber("4388576018402626");
 	
-	assertEquals(34, result);
+	assertEquals(37, result);
 }
+	@Test
+	public void testingIfFunctionCanAddAllDigitInTheOddPlaces
 }
