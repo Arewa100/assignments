@@ -38,7 +38,7 @@ def card_type(credit_card_number):
 	elif second_card == 5:
 		return "MasterCard"
 
-	elif third_card_second_digit == 3 and third_card_second_digit == 7:
+	elif third_card_first_digit == 3 and third_card_second_digit == 7:
 		return "American Express Cards"
 	elif fourth_card_number == 6:
 		return "Discover Cards"
