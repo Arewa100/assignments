@@ -84,4 +84,16 @@ public class CreditCardValidationTest {
 	assertArrayEquals(feedback, result);
 	
 }
+	@Test
+	public void testingToSeeIfTheCardNumberIsInValid() {
+	
+	ValidationFunction validate = new ValidationFunction();
+	
+	String[] feedback = {"MasterCard", "5388576018402626", "16", "Credit Card Is invalid"};
+	String[] result = validate.card("5388576018402626");
+	
+	assertArrayEquals(feedback, result);
+	
+}
+
 }

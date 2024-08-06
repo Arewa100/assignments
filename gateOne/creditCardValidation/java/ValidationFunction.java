@@ -94,7 +94,7 @@ public class ValidationFunction {
 	if(sumOftheFirstAndSecondValues % 10 == 0) {
 		message = "Credit Card Is Valid";
 	} else {
-		message = "Credit card is invalid";
+		message = "Credit Card Is invalid";
 	}
 	
 	String[] cardData = {theTypeOfCard, creditCardNumber, creditCardDigitLength, message};

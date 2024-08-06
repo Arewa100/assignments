@@ -1,37 +1,32 @@
+import java.util.Scanner;
+import java.util.Arrays;
 public class CreditCard {
 	public static void main(String[] args) {
+	
+		System.out.println("WELCOME TO THE CREDIT CARD VALIDATOR\n");
 
-		String creditCardNumber = "4388576018402626";
+	Scanner input = new Scanner(System.in);
+	ValidationFunction feedback = new ValidationFunction();
+	String cardNumber = "";
+	String[] cardData = new String[4];
 
-	final int STRING_LENGTH = creditCardNumber.length();  		      
-		
-		int count =  (STRING_LENGTH - 2);
-		int total = 0;
+	String flag = "";
+	
+	while(!flag.equals("no")) {
+	
+		System.out.print("Enter your credit card number:  ");
+			cardNumber = input.next();
 
-		while(count >= 0) {
-			char value = creditCardNumber.charAt(count);
-			String stringOfNumber = String.valueOf(value);
-			int number = Integer.parseInt(stringOfNumber);
-
-			number = (number * 2);
-
-			if(number >= 10) {
-
-				int firstNumber = (number % 10);   
-				int secondNumber = (number / 10); 
-				int sumOfDigits = (firstNumber + secondNumber);
-				total = (total + sumOfDigits);
-
-			} else {
-
-				total = total + number;
-			}
+			cardData = feedback.card(cardNumber);
 			
-			
-			
+			System.out.printf("Credit Card Type: %s %n", cardData[0]);
+			System.out.printf("Credit Card Number: %s %n", cardData[1]);
+			System.out.printf("Credit Card Digit Length: %s %n", cardData[2]);
+			System.out.printf("Credit Card Validity Status: %s %n", cardData[3]);
 
-			count = count - 2;
-		}
-		System.out.println(total);
+	
+		System.out.print("Enter yes to continue or no to end the app: \n");
+			flag = input.next();
+	}
 }
 }
