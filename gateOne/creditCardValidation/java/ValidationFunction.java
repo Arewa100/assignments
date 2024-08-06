@@ -76,4 +76,29 @@ public class ValidationFunction {
 			return "Invalid Card";
 		}
 }
+	public String[] card(String creditCardNumber) {
+		
+	ValidationFunction feedback = new ValidationFunction();
+	
+	String theTypeOfCard = feedback.cardType(creditCardNumber);
+
+	int firstValue = feedback.doubleEverySecondNumber(creditCardNumber);
+	int secondValue = feedback.sumNumbersInOddPositions(creditCardNumber);
+
+	int sumOftheFirstAndSecondValues = (firstValue + secondValue);
+	
+	final int STRING_LENGTH = creditCardNumber.length();
+	String creditCardDigitLength = String.valueOf(STRING_LENGTH);
+	
+	String message = "";
+	if(sumOftheFirstAndSecondValues % 10 == 0) {
+		message = "Credit Card Is Valid";
+	} else {
+		message = "Credit card is invalid";
+	}
+	
+	String[] cardData = {theTypeOfCard, creditCardNumber, creditCardDigitLength, message};
+	
+	return cardData;
+}
 }

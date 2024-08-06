@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 
 public class CreditCardValidationTest {
@@ -74,5 +75,13 @@ public class CreditCardValidationTest {
 }
 	@Test
 	public void testingToSeeIfTheCardNumberIsValid() {
+	
+	ValidationFunction validate = new ValidationFunction();
+	
+	String[] feedback = {"VisaCard", "4388576018410707", "16", "Credit Card Is Valid"};
+	String[] result = validate.card("4388576018410707");
+	
+	assertArrayEquals(feedback, result);
+	
 }
 }
