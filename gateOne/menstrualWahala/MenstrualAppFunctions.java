@@ -87,12 +87,76 @@ public class MenstrualAppFunctions {
 			} else {
 				ovulDate = calender[startCounter];
 				indexOfOvulationDateArray = indexOfOvulationDateArray + 1;
-				//this is where i am, ovulation dates 
 			}
 			startCounter = startCounter + 1;
 		}
 		return ovulDate;
 		
+		
+}
+	public int[] unSafeDates(int[] calender, int ovulationDate) {
+
+		final int UNSAFE_DAY_CONSTANT = 8;
+		final int UNSAFE_DAY_LENGTH = (UNSAFE_DAY_CONSTANT + 1);
+
+		int lastUnsafeDay = (ovulationDate + 2); 
+		int firstUnsafeDay = (lastUnsafeDay - UNSAFE_DAY_CONSTANT); 
+		int counter = (firstUnsafeDay - 1); 
+		
+		int indexOfUnsafeDaysArray = 0;
+		int[] theUnSafeDates = new int[UNSAFE_DAY_LENGTH];
+		int unsafeDate = 0;
+
+		while(counter <= calender.length) {
+			if(indexOfUnsafeDaysArray == UNSAFE_DAY_LENGTH) {
+				counter = calender.length;
+			}else {
+				unsafeDate = calender[counter];
+				theUnSafeDates[indexOfUnsafeDaysArray] = unsafeDate;
+				indexOfUnsafeDaysArray = indexOfUnsafeDaysArray + 1;
+			}
+			counter = counter + 1;
+		}
+		System.out.print(Arrays.toString(theUnSafeDates));
+		return theUnSafeDates;		
+		
+}
+	public int[] SafeDates(int[] calender, int day, int averageMenstrualCycle, int ovulationDate) {
+
+		final int UNSAFE_DAY_CONSTANT = 8;
+		int lastUnsafeDay = (ovulationDate + 2); 
+		int indexOfTheLastDay = (lastUnsafeDay - 1);
+
+		int firstUnsafeDay = (lastUnsafeDay - UNSAFE_DAY_CONSTANT); 
+		int counterOfFirstUnsafeDay = (firstUnsafeDay - 1); 
+		
+
+		int indexOfTheFirstDay = (day - 1);
+		final int UNSAFE_DAY_LENGTH = 9;
+		final int SAFEDAY_LENGTH = (averageMenstrualCycle - UNSAFE_DAY_LENGTH);
+		
+		int[] theSafeDates = new int[SAFEDAY_LENGTH];
+	
+		int unSafeDate = 0;
+		int indexOfUnsafeDaysArray = 0;
+		
+		while(indexOfTheFirstDay < calender.length) {
+
+			if(indexOfTheFirstDay == counterOfFirstUnsafeDay) {
+				indexOfTheFirstDay = (indexOfTheLastDay + 1);
+				unSafeDate = calender[indexOfTheFirstDay];
+				theSafeDates[indexOfTheFirstDay] = unSafeDate;
+			}
+			else {
+				unSafeDate = calender[indexOfTheFirstDay];
+				theSafeDates[indexOfTheFirstDay] = unSafeDate;
+				
+			}
+			indexOfUnsafeDaysArray = indexOfUnsafeDaysArray +  1;
+			indexOfTheFirstDay = indexOfTheFirstDay + 1;
+		}
+		System.out.print(Arrays.toString(theSafeDates));
+		return theSafeDates;
 		
 }
 }
