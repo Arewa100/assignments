@@ -37,7 +37,7 @@ public class Mydate {
 	public static void main(String[] args) {
 		Date mydate = new Date();
 		
-		String result = mydate.Date(7, 12, 1999);
+		String result = mydate.Date(7, 12, 1999); //5
 		System.out.println(result);
 }
 }
