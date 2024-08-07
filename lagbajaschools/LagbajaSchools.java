@@ -26,6 +26,7 @@ public class LagbajaSchools {
 	System.out.println("Saved successfully\n");
 
 		int arrayIndexCounter = 0;
+
 	for(int studentCounterr = 1; studentCounterr <= numberOfStudents; studentCounterr++) {
 	
 		for(int subjectCounter = 0; subjectCounter < numberOfSubjects; subjectCounter++) {
@@ -53,6 +54,7 @@ public class LagbajaSchools {
 			for(int iteratingthroughsubject = 0; iteratingthroughsubject < subject.length; iteratingthroughsubject++) {
 				System.out.printf("%7s", subject[iteratingthroughsubject]);
 			}
+
 		System.out.printf("%6s %6s %6s%n", "TOT", "AVG", "POS");
 
 	}
@@ -77,13 +79,8 @@ public class LagbajaSchools {
 		averagePerStudent[counter] = average;
 	}
 
-		//System.out.print(Arrays.toString(averagePerStudent));
-		//double maximum = //I AM HERE 
-		//double minimum = 
-	for(int positioncounter = 0; positioncounter < averagePerStudent.length; positioncounter++) {
-		//TRYING TO COMPARE AVERAGES AND RETURN THE POSITIONS
-	}
-
+		
+	
 
 		int printScoreCount = 0;
 
@@ -106,5 +103,6 @@ public class LagbajaSchools {
 		System.out.println("");
 	}
 			//System.out.print(Arrays.toString(score));
+			System.out.print(Arrays.toString(averagePerStudent));
 }
 }
