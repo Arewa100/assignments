@@ -32,11 +32,13 @@ public class MenstrualApp {
 	int ovulationDate = feedback.getOvulationDate();
 	int[] flowDates = feedback.getFlowDates();
 	int[] unSafeDates = feedback.getUnSafeDates();
-	int[] safeDates = feedback.getSafeDates();
+	int[] safeDates = feedback.getSafeDates(); 
+	
+	System.out.printf("%10s, %10s, %10s, %10S%n", "OVULATION DATE", "FLOW DATES", "UN-SAFE DATES", "SAFE DATES");
+	System.out.printf("%6d", ovulationDate);	
 
-	System.out.println(ovulationDate);
-	System.out.println(flowDates);
-	System.out.println(unSafeDates);
-	System.out.print(Arrays.toString(safeDates));
+	for(int counter = 0; counter < flowDates.length; counter++) {
+		System.out.printf("%6d%n", flowDates[counter]);
+	}
 }
 }

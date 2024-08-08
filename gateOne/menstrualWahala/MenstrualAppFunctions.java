@@ -30,8 +30,16 @@ public class MenstrualAppFunctions {
 		
 		final int ARRAY_LENGTH = daysOfEachMonth.length;
 			
+		if(month == 12) {
+
+		int daySize = daysOfEachMonth[month];
+		selectedMonths[0] = daySize;
+		selectedMonths[1] = daysOfEachMonth[1];
+
+		} else {
+	
 		for(int count = 0; count < ARRAY_LENGTH; count++) {
-			if(month != 0 && count == day && month <= 12) {
+			if(month != 0 && count == day && month < 12) {
 				int daySize = daysOfEachMonth[month];
 				selectedMonths[0] = daySize;
 			} else {
@@ -40,7 +48,7 @@ public class MenstrualAppFunctions {
 				selectedMonths[1] = daySize;
 			}
 		}
-
+		}
 		
 		return selectedMonths; 
 }
@@ -188,7 +196,6 @@ public class MenstrualAppFunctions {
 			indexOfsafeDaysArray = indexOfsafeDaysArray +  1;
 			indexOfTheFirstDay = indexOfTheFirstDay + 1;
 		}
-		System.out.print(Arrays.toString(theSafeDates));
 		return theSafeDates;
 		
 }
