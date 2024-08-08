@@ -1,9 +1,10 @@
+import java.util.Arrays;
 public class MyerBriggFunctions {
+
+	private char[] response;
 	
-	private String[] question;
-	
-	public MyerBriggFunctions() {
-				String[] question =  {
+	public String[] serveQuestion() {
+			String[] question =  {
 					"1: (A) expend energy, enjoy groups (B) conserve energy, enjoy one on one",
 					"2: (A) interpret literally (B) look for meaning and possibilities",
 					"3: (A) logical, thinking, questioning (B) emphathic, feeling, accommodating",
@@ -26,10 +27,153 @@ public class MyerBriggFunctions {
 					"20: (A) control, govern (B) latitude, freedom"
 					};
 
-		this.question = question;
+		return question;
 }
-	public String[] serveQuestion() {
-		String[] questions = question;
-		return questions;
+	public void getResponse(char[] response) {
+	
+		this.response = response;
+
+		
 }
+	public char getFirstTestResult() {
+
+		char[] theResponse = response;
+
+		int numberOfAs = 0;
+		int numberOfBs = 0;
+		char firstResponse = theResponse[0];
+		char secondResponse = theResponse[4];
+		char thirdResponse = theResponse[8];
+		char fourthResponse = theResponse[12];
+		char fifthResponse = theResponse[16];
+
+		char[] firstTestResponses = {firstResponse, secondResponse, thirdResponse, fourthResponse, fifthResponse};
+	
+		for(int count = 0; count < firstTestResponses.length; count++) {
+			if(firstTestResponses[count] == 'A') {
+				numberOfAs = numberOfAs + 1;
+			} else {
+				numberOfBs = numberOfBs + 1;
+			}
+		}
+		
+		if(numberOfAs > numberOfBs) {
+			return 'E';
+		}else {
+			return 'I';
+		
+		}
+}
+	public char getSecondTestResult() {
+
+		char[] theResponse = response;
+
+		int numberOfAs = 0;
+		int numberOfBs = 0;
+		char firstResponse = theResponse[1];
+		char secondResponse = theResponse[5];
+		char thirdResponse = theResponse[9];
+		char fourthResponse = theResponse[13];
+		char fifthResponse = theResponse[17];
+
+		char[] firstTestResponses = {firstResponse, secondResponse, thirdResponse, fourthResponse, fifthResponse};
+	
+		for(int count = 0; count < firstTestResponses.length; count++) {
+			if(firstTestResponses[count] == 'A') {
+				numberOfAs = numberOfAs + 1;
+			} else {
+				numberOfBs = numberOfBs + 1;
+			}
+		}
+		
+		if(numberOfAs > numberOfBs) {
+			return 'S';
+		}else {
+			return 'N';
+		
+		}
+}
+	public char getThirdTestResult() {
+
+		char[] theResponse = response;
+
+		int numberOfAs = 0;
+		int numberOfBs = 0;
+		char firstResponse = theResponse[2];
+		char secondResponse = theResponse[6];
+		char thirdResponse = theResponse[10];
+		char fourthResponse = theResponse[14];
+		char fifthResponse = theResponse[18];
+
+		char[] firstTestResponses = {firstResponse, secondResponse, thirdResponse, fourthResponse, fifthResponse};
+	
+		for(int count = 0; count < firstTestResponses.length; count++) {
+			if(firstTestResponses[count] == 'A') {
+				numberOfAs = numberOfAs + 1;
+			} else {
+				numberOfBs = numberOfBs + 1;
+			}
+		}
+		
+		if(numberOfAs > numberOfBs) {
+			return 'T';
+		}else {
+			return 'F';
+		
+		}
+}
+	public char getFourthTestResult() {
+
+		char[] theResponse = response;
+
+		int numberOfAs = 0;
+		int numberOfBs = 0;
+		char firstResponse = theResponse[3];
+		char secondResponse = theResponse[7];
+		char thirdResponse = theResponse[11];
+		char fourthResponse = theResponse[15];
+		char fifthResponse = theResponse[19];
+
+		char[] firstTestResponses = {firstResponse, secondResponse, thirdResponse, fourthResponse, fifthResponse};
+	
+		for(int count = 0; count < firstTestResponses.length; count++) {
+			if(firstTestResponses[count] == 'A') {
+				numberOfAs = numberOfAs + 1;
+			} else {
+				numberOfBs = numberOfBs + 1;
+			}
+		}
+		
+		if(numberOfAs > numberOfBs) {
+			return 'J';
+		}else {
+			return 'P';
+		
+		}
+}
+
 } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
