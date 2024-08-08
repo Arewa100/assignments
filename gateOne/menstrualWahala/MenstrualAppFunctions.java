@@ -1,9 +1,32 @@
 import java.util.Arrays;
 public class MenstrualAppFunctions {
-	
-	public int[] date(int month, int day, int year) {    //6, 7, 2024)
 		
-		int[] daysOfEachMonth = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	private int month;
+	private int day;
+	private int year;
+	private int periodOfFlow;
+	private int averageMenstrualCycle;
+	private int[] calender;
+	private int ovulationDate;
+	
+	public MenstrualAppFunctions(int month, int day, int year, int periodOfFlow, int averageMenstrualCycle) {
+		this.month = month;
+		this.day = day;
+		this.year = year;
+		this.periodOfFlow = periodOfFlow;
+		this.averageMenstrualCycle = averageMenstrualCycle;
+}
+	
+	public int[] date() {
+		
+		int leap;
+ 		if (month == 2 && day == 29) {
+			leap = 29;
+ 		} else {
+			leap = 28;
+		}
+		
+		int[] daysOfEachMonth = {0, 31, leap, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 		int[] selectedMonths = new int[2];
 		
 		final int ARRAY_LENGTH = daysOfEachMonth.length;
@@ -22,7 +45,9 @@ public class MenstrualAppFunctions {
 		
 		return selectedMonths; 
 }
-	public int[] calender (int[] numberOfDaysOfTwoMonth) {
+	public int[] calender() {
+
+		int[] numberOfDaysOfTwoMonth = date();
 
 		final int TOTAL_MONTH_LENGTH = (numberOfDaysOfTwoMonth[0] + numberOfDaysOfTwoMonth[1]);
 		
@@ -44,11 +69,12 @@ public class MenstrualAppFunctions {
 			}
 			counter = counter + 1;
 		}
-		System.out.print(Arrays.toString(calenderDays));
 		return calenderDays;
 }
-	public int[] flowDates(int day, int periodOfFlow, int[] calender) { 
 
+	public int[] getFlowDates() { 
+		
+		int[] calender = calender();
 		int[] theFlowDates = new int[periodOfFlow];
 		
 		int counter = (day - 1);  
@@ -65,13 +91,14 @@ public class MenstrualAppFunctions {
 			}
 			counter = counter + 1;
 		}
-		System.out.print(Arrays.toString(theFlowDates));
 		return theFlowDates;
 		
 		
 		
 }
-	public int ovulationDate(int averageMenstrualCycle, int[] calender, int day, int periodOfFlow) {
+	public int getOvulationDate() {
+
+		int[] calender = calender();
 		final int TIME_TAKEN = 14;
 		final int TIME_TAKEN_BEFORE_OVULATION = (averageMenstrualCycle - TIME_TAKEN); 
 
@@ -94,7 +121,10 @@ public class MenstrualAppFunctions {
 		
 		
 }
-	public int[] unSafeDates(int[] calender, int ovulationDate) {
+	public int[] getUnSafeDates() {
+		
+		int[] calender = calender();
+		int ovulationDate = getOvulationDate();
 
 		final int UNSAFE_DAY_CONSTANT = 8;
 		final int UNSAFE_DAY_LENGTH = (UNSAFE_DAY_CONSTANT + 1);
@@ -117,11 +147,14 @@ public class MenstrualAppFunctions {
 			}
 			counter = counter + 1;
 		}
-		System.out.print(Arrays.toString(theUnSafeDates));
+
 		return theUnSafeDates;		
 		
 }
-	public int[] SafeDates(int[] calender, int day, int averageMenstrualCycle, int ovulationDate) {
+	public int[] getSafeDates() {
+
+		int ovulationDate = getOvulationDate();
+		int[] calender = calender();
 
 		final int UNSAFE_DAY_CONSTANT = 8;
 		int lastUnsafeDay = (ovulationDate + 2); 
@@ -130,7 +163,6 @@ public class MenstrualAppFunctions {
 		int firstUnsafeDay = (lastUnsafeDay - UNSAFE_DAY_CONSTANT); 
 		int counterOfFirstUnsafeDay = (firstUnsafeDay - 1); 
 		
-
 		int indexOfTheFirstDay = (day - 1);
 		final int UNSAFE_DAY_LENGTH = 9;
 		final int SAFEDAY_LENGTH = (averageMenstrualCycle - UNSAFE_DAY_LENGTH);
@@ -140,18 +172,20 @@ public class MenstrualAppFunctions {
 		int unSafeDate = 0;
 		int indexOfUnsafeDaysArray = 0;
 		
-		while(indexOfTheFirstDay < calender.length) {
+		while(indexOfUnsafeDaysArray < theSafeDates.length) {
 
 			if(indexOfTheFirstDay == counterOfFirstUnsafeDay) {
 				indexOfTheFirstDay = (indexOfTheLastDay + 1);
 				unSafeDate = calender[indexOfTheFirstDay];
-				theSafeDates[indexOfTheFirstDay] = unSafeDate;
+				theSafeDates[indexOfUnsafeDaysArray] = unSafeDate;
+		
 			}
 			else {
 				unSafeDate = calender[indexOfTheFirstDay];
-				theSafeDates[indexOfTheFirstDay] = unSafeDate;
+				theSafeDates[indexOfUnsafeDaysArray] = unSafeDate;
 				
 			}
+
 			indexOfUnsafeDaysArray = indexOfUnsafeDaysArray +  1;
 			indexOfTheFirstDay = indexOfTheFirstDay + 1;
 		}
