@@ -6,7 +6,6 @@ public class MenstrualAppFunctions {
 	private int year;
 	private int periodOfFlow;
 	private int averageMenstrualCycle;
-	private int[] calender;
 	private int ovulationDate;
 	
 	public MenstrualAppFunctions(int month, int day, int year, int periodOfFlow, int averageMenstrualCycle) {
@@ -170,23 +169,23 @@ public class MenstrualAppFunctions {
 		int[] theSafeDates = new int[SAFEDAY_LENGTH];
 	
 		int unSafeDate = 0;
-		int indexOfUnsafeDaysArray = 0;
+		int indexOfsafeDaysArray = 0;
 		
-		while(indexOfUnsafeDaysArray < theSafeDates.length) {
+		while(indexOfsafeDaysArray < theSafeDates.length) {
 
 			if(indexOfTheFirstDay == counterOfFirstUnsafeDay) {
-				indexOfTheFirstDay = (indexOfTheLastDay + 1);
+				indexOfTheFirstDay = (indexOfTheLastDay + 1); 
 				unSafeDate = calender[indexOfTheFirstDay];
-				theSafeDates[indexOfUnsafeDaysArray] = unSafeDate;
+				theSafeDates[indexOfsafeDaysArray] = unSafeDate;
 		
 			}
 			else {
 				unSafeDate = calender[indexOfTheFirstDay];
-				theSafeDates[indexOfUnsafeDaysArray] = unSafeDate;
+				theSafeDates[indexOfsafeDaysArray] = unSafeDate;
 				
 			}
 
-			indexOfUnsafeDaysArray = indexOfUnsafeDaysArray +  1;
+			indexOfsafeDaysArray = indexOfsafeDaysArray +  1;
 			indexOfTheFirstDay = indexOfTheFirstDay + 1;
 		}
 		System.out.print(Arrays.toString(theSafeDates));
