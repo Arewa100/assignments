@@ -68,5 +68,15 @@ public class MyerBriggFunctionsTest {
 		assertEquals('J', result);
 		
 }
+	@Test
+	public void testingIfFunctionToResturnFinalPersonalityWorksProperly() {
+		MyerBriggFunctions feedback = new MyerBriggFunctions();
+		
+		char[] response = {'A', 'B', 'A', 'A', 'A', 'B', 'A', 'A', 'B', 'A', 'A', 'B', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'B'};
+		feedback.getResponse(response);
 
+		String result = feedback.personality();
+		
+		assertEquals("you be big man o: alaye", result);
+}
 }

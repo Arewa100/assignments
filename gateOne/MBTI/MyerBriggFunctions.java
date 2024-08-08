@@ -151,7 +151,27 @@ public class MyerBriggFunctions {
 		
 		}
 }
+		public String personality() {
 
+			getResponse(response);
+	 		String firstResponse = String.valueOf(getFirstTestResult());
+			String secondResponse = String.valueOf(getSecondTestResult());
+			String thirdResponse =  String.valueOf(getThirdTestResult());
+			String fourthResponse = String.valueOf(getFourthTestResult());
+	
+			String[] ofResponses = {firstResponse, secondResponse, thirdResponse, fourthResponse};
+			String personalityTest = "";
+
+			for(int count = 0; count < ofResponses.length; count++) {
+				personalityTest = personalityTest + ofResponses[count];
+			}
+		
+			if(personalityTest.equals("ISTJ")) {
+				return "you be big man o: alaye";
+			}else {
+				return "i cannot talk";
+			}
+}
 } 
 
 
