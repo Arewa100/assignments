@@ -42,7 +42,8 @@ public class MyerBriggFunctions {
 
 		for(int count = 0; count < response.length; count++) {
 			if(response[count] != 'A' && response[count] != 'B') {
-				throw new IllegalArgumentException("invalid input at question " + count + " the selection should be 'A' or 'B'");
+				int questionNumber = (count + 1);
+				throw new IllegalArgumentException("invalid input at question " + questionNumber + " the selection should be 'A' or 'B'");
 			}
 		}
 		this.response = response;
