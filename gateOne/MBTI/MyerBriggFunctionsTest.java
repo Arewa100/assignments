@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class MyerBriggFunctionsTest {
@@ -10,17 +11,27 @@ public class MyerBriggFunctionsTest {
 
 		MyerBriggFunctions feedback = new MyerBriggFunctions();
 	
-		String question = "1: (A) expend energy, enjoy groups (B) conserve energy, enjoy one on one";
+		String question = "1: (A) expend energy, enjoy groups : (B) conserve energy, enjoy one on one";
 		String [] result = feedback.serveQuestion();
 	
 		assertEquals(question, result[0]);
 	
 }
+@Test
+	public void testingIfTheGetResponseFunctionCanReturnException() {
+
+		MyerBriggFunctions feedback = new MyerBriggFunctions();
+
+		char[] response = {'A', 'B', 'A', 'n', 'A', 'B', 'A', 'A', 'B', 'A', 'A', 'B', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'B'};
+
+		assertThrows(IllegalArgumentException.class, ()-> feedback.getResponse(response));
+		
+}
 	@Test
 	public void testingIfTheGetFirstResponseFunctionCanReturnForFirstPersonality() {
 
 		MyerBriggFunctions feedback = new MyerBriggFunctions();
-
+	
 		char[] response = {'A', 'B', 'A', 'A', 'A', 'B', 'A', 'A', 'B', 'A', 'A', 'B', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'B'};
 		feedback.getResponse(response);
 
