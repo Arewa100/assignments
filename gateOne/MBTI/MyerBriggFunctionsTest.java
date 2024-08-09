@@ -74,9 +74,11 @@ public class MyerBriggFunctionsTest {
 		
 		char[] response = {'A', 'B', 'A', 'A', 'A', 'B', 'A', 'A', 'B', 'A', 'A', 'B', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'B'};
 		feedback.getResponse(response);
+			
+		String message = "(The Inspector : ISTJ Personality) ISTJs are serious, proper, and formal in appearance which can be intimidating. They are cultured and have an affection towards tradition. In contrast, they are quiet and usually calm.  They are called inspectors because of their keen attention to detail. ISTJ are rule followers who always take the logical approach towards their goals and projects. Their dominant cognitive function is introverted sensing which helps them take in the details about their environment while their auxiliary cognitive function is extraverted thinking which makes them efficient and logical thinkers. In their relationships, they are very loyal to their friends and family members. Usually, they have a small circle with who they prefer spending their time with. The ISTJ thrives in jobs that require structure, logic, and stability.";
 
 		String result = feedback.personality();
 		
-		assertEquals("you be big man o: alaye", result);
+		assertEquals(message, result);
 }
 }
