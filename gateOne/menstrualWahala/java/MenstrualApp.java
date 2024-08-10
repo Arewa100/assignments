@@ -26,19 +26,34 @@ public class MenstrualApp {
 
 	System.out.print("Enter the your average mentrual cycle: ");
 		averageMenstrualCycle = input.nextInt();
+	System.out.println(" ");
+
 
 	MenstrualAppFunctions feedback = new MenstrualAppFunctions(month, day, year, periodOfFlow, averageMenstrualCycle);
-	
+
 	int ovulationDate = feedback.getOvulationDate();
 	int[] flowDates = feedback.getFlowDates();
 	int[] unSafeDates = feedback.getUnSafeDates();
 	int[] safeDates = feedback.getSafeDates(); 
 	
-	System.out.printf("%10s, %10s, %10s, %10S%n", "OVULATION DATE", "FLOW DATES", "UN-SAFE DATES", "SAFE DATES");
-	System.out.printf("%6d", ovulationDate);	
-
+	System.out.printf("OVULATION DATE: %6d%n", ovulationDate);
+	System.out.printf("%6s is:  ", "FLOW DATES");	
 	for(int counter = 0; counter < flowDates.length; counter++) {
-		System.out.printf("%6d%n", flowDates[counter]);
+		System.out.printf("%4d ", flowDates[counter]);
 	}
+	System.out.println(" ");
+	System.out.printf("%6s is:  ", "UN-SAFE-DATES");	
+	for(int counter = 0; counter < unSafeDates.length; counter++) {
+		System.out.printf("%4d ", unSafeDates[counter]);
+	}
+	System.out.println(" ");
+	System.out.printf("%6s is:  ", "SAFE-DATES");	
+	for(int counter = 0; counter < safeDates.length; counter++) {
+		System.out.printf("%4d ", safeDates[counter]);
+	}
+
+	System.out.println(" ");
+	System.out.println("stay safe....");
+
 }
 }
