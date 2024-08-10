@@ -9,6 +9,15 @@ def personality_messages():
 	return message;
 
 
+def exception_checker(response) -> ValueError:
+	try:
+		if response != 'A' and response != 'B': 
+			raise ValueError
+	except ValueError:
+		raise ValueError("invalid input, make sure your selection is A or B")
+	else:
+		return response
+
 def getresponse(response) -> ValueError:
 	size = len(response)
 	try:
@@ -16,9 +25,10 @@ def getresponse(response) -> ValueError:
 			if response[count] != 'A' and response[count] != 'B': 
 				raise ValueError
 	except ValueError:
-		raise ValueError("invalid input, make sure it is selection is A or B")  
+		raise ValueError("invalid input, make sure your selection is A or B")  
 	else:	
 		return response
+
 
 def get_first_test_result(response):
 	

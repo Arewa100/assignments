@@ -13,7 +13,13 @@ def test_if_get_response_can_check_for_exceptions():
 	response = ['A', 'B', 'A', 'f', 'A', 'B', 'A', 'A', 'B', 'A', 'A', 'B', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'B']
 	with pytest.raises(ValueError) as excinfo:
 		myerbriggsfunctions.getresponse(response)
-	assert str(excinfo.value) == "invalid input, make sure it is selection is A or B"
+	assert str(excinfo.value) == "invalid input, make sure your selection is A or B"
+
+def test_exception_checker():
+	user_input = 'S'
+	with pytest.raises(ValueError) as excinfo:
+		myerbriggsfunctions.exception_checker(user_input)
+	assert str(excinfo.value) == "invalid input, make sure your selection is A or B"
 
 def test_get_first_test_result():
 	response = ['A', 'B', 'A', 'A', 'A', 'B', 'A', 'A', 'B', 'A', 'A', 'B', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'B']
