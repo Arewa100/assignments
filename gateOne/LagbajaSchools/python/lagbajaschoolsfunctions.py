@@ -40,7 +40,7 @@ def calculate_average(student_total_data, number_of_subject):
 
 	return average
 
-def calculate_postion(dict_of_average):
+def calculate_position(dict_of_average):
 	position = []
 	student_position = {}
 	dict_length = len(dict_of_average)
@@ -50,11 +50,12 @@ def calculate_postion(dict_of_average):
 
 
 	position.sort()
-
-	for counter in position:
+	position_length = len(position)
+	for counter in range(position_length):
 		for count in range(dict_length):
-			if counter == dict_of_average[f"student {counter + 1}"]:
-				student_position[f"student {counter + 1}"] = counter
+			student_average_position = dict_of_average[f"student {counter + 1}"]
+			if position[count] == student_average_position:
+				student_position[f"student {counter + 1}"] = student_average_position
 			
 
 	
