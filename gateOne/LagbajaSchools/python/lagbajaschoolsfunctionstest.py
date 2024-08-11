@@ -16,6 +16,8 @@ def test_calculate_total():
 	student_data = {"student 1": [1, 2, 3], "student 2": [4, 5, 6], "student 3": [7, 8, 9], "student 4": [10, 11, 12]}
 	assert lagbajaschoolsfunctions.calculate_total(student_data) == {"student 1": 6, "student 2": 15, "student 3": 24, "student 4": 33}
 
+calculate_postion(dict_of_average)
+
 def test_calculate_average():
 	student_total_data = {"student 1": 6, "student 2": 15, "student 3": 24, "student 4": 33}
 	assert lagbajaschoolsfunctions.calculate_average(student_total_data, 4) == {"student 1": 1.5, "student 2": 3.75, "student 3": 6, "student 4": 8.25}
