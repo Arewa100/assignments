@@ -10,4 +10,4 @@ def test_exception_handling_of_get_scores():
 	assert str(excinfo.value) == "invalid input for student score"
 
 def test_get_student_score():
-	assert lagbajaschoolsfunctions.get_student_score(4, 3) == {"student 0": [1, 2, 3], "student 1": [4, 5, 6], "student 2": [7, 8, 9], "student 3": [10, 11, 12]}
+	assert lagbajaschoolsfunctions.get_student_score(4, 3) == {"student 1": [1, 2, 3], "student 2": [4, 5, 6], "student 3": [7, 8, 9], "student 4": [10, 11, 12]}
