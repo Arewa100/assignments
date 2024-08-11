@@ -12,3 +12,4 @@ dict_of_average = lagbajaschoolsfunctions.calculate_average(student_total_data, 
 result = lagbajaschoolsfunctions.calculate_position(dict_of_average)
 print(result)
 print(dict_of_average)
+
