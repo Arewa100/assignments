@@ -1,5 +1,4 @@
 public class Wage {
-	
 	public static int payment(int successfulDelivery) {
 
 		int deliveryLessThanfiftyPercent;
