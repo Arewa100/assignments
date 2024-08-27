@@ -1,8 +1,9 @@
-package account;
+package bank;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AccountTest {
     private Account account;
@@ -90,4 +91,22 @@ class AccountTest {
         assertEquals(2_000, account.getBalance(1, "correctPin"));
         assertEquals(0, account.getBalance(1, "wrongPin"));
     }
+    @Test
+    public void testToUpdateUserPinAndWithdrawWithTheNewPin() {
+        account.deposit(1, 2_000, "correctPin");
+        assertEquals(2000, account.getBalance(1, "correctPin"));
+        account.updatePin("correctPin", "newPin");
+        account.withdraw(1, 1000, "newPin");
+        assertEquals(1000, account.getBalance(1, "newPin"));
+    }
+    @Test
+    public void testToConfirmIfNewPinIsUniqueAndNotOldPin() {
+        account.deposit(1,2_000,"correctPin");
+        assertEquals(2_000, account.getBalance(1, "correctPin"));
+        assertThrows(IllegalArgumentException.class, () ->  account.updatePin("correctPin", "correctPin"));
+        account.updatePin("correctPin", "newPin");
+        account.withdraw(1, 1000, "newPin");
+        assertEquals(1000, account.getBalance(1, "newPin"));
+    }
+
 }

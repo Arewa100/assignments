@@ -1,4 +1,4 @@
-package account;
+package bank;
 
 public class Account {
 
@@ -32,5 +32,13 @@ public class Account {
     private boolean accountAndPinIsValid(int accountNumber, String pin) {
         boolean accountIsValidAndPinIsCorrect = (this.pin.equals(pin) && this.accountNumber == accountNumber);
         return accountIsValidAndPinIsCorrect ? true : false;
+    }
+
+    public void updatePin(String correctPin, String newPin) {
+        if(pin.equals(newPin)) {
+            throw new IllegalArgumentException("Incorrect pin...");
+        }else {
+            pin = newPin;
+        }
     }
 }
