@@ -5,19 +5,23 @@ public class Account {
     private double balance;
     private String name;
     private String pin;
-    private int accountNumber;
+    private String accountNumber;
 
-    public Account(int accountNumber, String firstName, String lastName, String pin) {
+    public Account(String accountNumber, String firstName, String lastName, String pin) {
         name = firstName + " " + lastName;
         this.pin = pin;
         this.accountNumber = accountNumber;
     }
-
-    public void deposit(int accountNumber, int amount, String pin) {
-        if(accountAndPinIsValid(accountNumber, pin) && amount > 0) balance += amount;
+    public String getAccountName() {
+        return name;
     }
-
-    public double getBalance(int accountNumber, String pin) {
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+    public void deposit(String accountNumber, int amount) {
+        if(this.accountNumber.equals(accountNumber) && amount > 0) balance += amount;
+    }
+    public double getBalance(String accountNumber, String pin) {
         if(accountAndPinIsValid(accountNumber, pin)) {
             return balance;
         } else {
@@ -25,18 +29,18 @@ public class Account {
         }
     }
 
-    public void withdraw(int accountNumber, int amount, String pin) {
+    public void withdraw(String accountNumber, int amount, String pin) {
         boolean accountBalanceIsSufficient = (amount > 0 && amount < balance);
         if(accountAndPinIsValid(accountNumber, pin) && accountBalanceIsSufficient) balance -= amount;
     }
-    private boolean accountAndPinIsValid(int accountNumber, String pin) {
+    private boolean accountAndPinIsValid(String accountNumber, String pin) {
         boolean accountIsValidAndPinIsCorrect = (this.pin.equals(pin) && this.accountNumber == accountNumber);
         return accountIsValidAndPinIsCorrect ? true : false;
     }
 
     public void updatePin(String correctPin, String newPin) {
-        if(pin.equals(newPin)) {
-            throw new IllegalArgumentException("Incorrect pin...");
+        if(pin.equals(correctPin) && pin.equals(newPin)) {
+            throw new IllegalArgumentException("pin already exists...");
         }else {
             pin = newPin;
         }
