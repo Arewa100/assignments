@@ -1,7 +1,7 @@
-package problems;
+package reflection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ProblemTest {
+class problemTest {
 
 }
