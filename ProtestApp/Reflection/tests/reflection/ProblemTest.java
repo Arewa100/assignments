@@ -17,13 +17,13 @@ public class ProblemTest {
     }
     @Test
     public void testToCreateProblemAndGetItsType() {
-        Problem problem = new Problem("unblieve", ProblemType.SPIRITUAL);
+        Problem problem = new Problem("un-believe", ProblemType.SPIRITUAL);
         assertEquals(ProblemType.SPIRITUAL, problem.getType());
     }
     @Test
     public void testToSolveAProblemByChangingItsState() {
-        Problem problem = new Problem("unblieve", ProblemType.SPIRITUAL);
-        assertEquals("unblieve", problem.getName());
+        Problem problem = new Problem("un-believe", ProblemType.SPIRITUAL);
+        assertEquals("un-believe", problem.getName());
         assertEquals(ProblemType.SPIRITUAL, problem.getType());
         assertFalse(problem.isSolve());
         problem.setState();

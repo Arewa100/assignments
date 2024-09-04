@@ -3,7 +3,7 @@ package reflection;
 import java.util.ArrayList;
 
 public class Person {
-    private ArrayList<Problem> listOfProblems = new ArrayList<>();
+    private final ArrayList<Problem> listOfProblems = new ArrayList<>();
 
     public Problem addToProblem(String name, ProblemType problemType) {
         listOfProblems.add(new Problem(name, problemType));
