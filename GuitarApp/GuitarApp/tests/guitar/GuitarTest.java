@@ -59,4 +59,8 @@ public class GuitarTest {
     public void testToGetTopWood() {
         assertEquals("topwood", guitar.getTopWood());
     }
+    @Test
+    public void testToGetGuitarGuitarSerialNumber() {
+        assertEquals("123", guitar.getSerialNumber());
+    }
 }

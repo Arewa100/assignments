@@ -52,4 +52,13 @@ public class Guitar {
     public String getTopWood() {
         return topWood;
     }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public String toString() {
+        return String.format("serialNumber: %4s, price: %4.2f, builder: %4s, model: %4s, type: %4s, backWood: %4s, topWood: %4s", serialNumber, price, builder, model, type, backWood, topWood);
+    }
+
 }
