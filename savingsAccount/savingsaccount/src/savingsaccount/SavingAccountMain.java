@@ -1,13 +1,10 @@
 package savingsaccount;
 
-import java.util.Scanner;
-
 public class SavingAccountMain {
     public static void main(String[] args) {
         System.out.println("\nWelcome to the savings account annual rate calculator");
         SavingAccount savingAccount = new SavingAccount();
         Input inputRequest = new Input();
-        Scanner input = new Scanner(System.in);
 
         double savings;
         double annualInterestRate;
@@ -18,18 +15,12 @@ public class SavingAccountMain {
         savingAccount.modifyInterestRate(annualInterestRate);
         savings = inputRequest.input("enter the savingsAmount");
         savingAccount.deposit(savings);
-
-        System.out.println("Enter the number of years");
-        numberOfYear = input.nextInt();
+        numberOfYear = (int)inputRequest.input("Enter the number of years");
         numberOfMonth = numberOfYear * 12;
 
-        int count = 1;
-        while (count <= numberOfMonth) {
-
+        for(int count = 1; count <= numberOfMonth; count++) {
             savingAccount.calculateMonthlyInterestRate();
-            System.out.printf("the balance at the end of %d month is %f %n%n", count, savingAccount.getBalance());
-
-            count++;
+            System.out.printf("the balance at the end of %d month is %.2f %n%n", count, savingAccount.getBalance());
         }
     }
 }
