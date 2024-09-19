@@ -14,4 +14,8 @@ public class PrintBook extends Book {
     public String toString() {
         return String.format("publisher: %s, ISBN: %s", publisher, ISBN);
     }
+
+    public String getAuthor() {
+        return super.getAuthor();
+    }
 }
