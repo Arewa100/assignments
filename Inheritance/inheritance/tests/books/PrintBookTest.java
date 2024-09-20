@@ -14,7 +14,7 @@ public class PrintBookTest {
     @Test
     public void testThatPrintBookInheritsFromBookSuperClass() {
         PrintBook printBook = new PrintBook("49 laws of Power", 2004, "Robert Greene", "joost effer", "1233");
-        assertEquals(printBook.toString(), "publisher: joost effer, ISBN: 1233");
+        assertEquals(printBook.toString(), "title: 49 laws of Power, year: 2004, author: Robert Green, publisher: joost effer, ISBN: 1233");
     }
 
     @Test
