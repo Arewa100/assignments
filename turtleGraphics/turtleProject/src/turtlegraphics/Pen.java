@@ -15,4 +15,8 @@ public class Pen {
     public void movePenDown() {
         penIsUp = false;
     }
+
+    public void movePenUp() {
+        penIsUp = true;
+    }
 }

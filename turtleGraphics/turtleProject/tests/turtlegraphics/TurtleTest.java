@@ -3,9 +3,7 @@ package turtlegraphics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TurtleTest {
     private Turtle totois;
@@ -34,5 +32,16 @@ public class TurtleTest {
         assertTrue(totois.penIsUp());
         totois.movePenDown();
         assertFalse(totois.penIsUp());
+    }
+    @Test
+    public void test_To_Move_PenDown_And_Move_It_BackUp() {
+        totois.movePenDown();
+        assertFalse(totois.penIsUp());
+        totois.movePenUp();
+        assertTrue(totois.penIsUp());
+    }
+    @Test
+    public void test_That_Turtle_Default_Position_Is_0_0() {
+        assertEquals("0, 0", totois.position());
     }
 }

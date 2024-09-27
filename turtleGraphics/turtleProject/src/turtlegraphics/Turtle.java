@@ -17,4 +17,8 @@ public class Turtle {
     public void movePenDown() {
         pen.movePenDown();
     }
+
+    public void movePenUp() {
+        pen.movePenUp();
+    }
 }
