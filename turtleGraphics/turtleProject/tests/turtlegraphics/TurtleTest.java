@@ -42,6 +42,7 @@ public class TurtleTest {
     }
     @Test
     public void test_That_Turtle_Default_Position_Is_0_0() {
-        assertEquals("0, 0", totois.position());
+        totois.position(0, 0);  //this is where i am
+        assertEquals("0, 0", totois.getCurrentPosition()); //this is where i am
     }
 }
