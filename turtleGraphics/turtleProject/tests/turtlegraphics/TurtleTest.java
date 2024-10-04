@@ -1,6 +1,7 @@
 package turtlegraphics;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,7 +43,28 @@ public class TurtleTest {
     }
     @Test
     public void test_That_Turtle_Default_Position_Is_0_0() {
-        totois.position(0, 0);  //this is where i am
-        assertEquals("0, 0", totois.getCurrentPosition()); //this is where i am
+        totois.setPosition(0, 0);
+        assertEquals("0,0", totois.getCurrentPosition());
+    }
+
+    @Test
+    @DisplayName("test that turtle position is always 0, 0 and pen is up when initialized")
+    public void test_That_Turtle_Position_Is_0_0() {
+        assertEquals("0,0", totois.getCurrentPosition());
+        assertTrue(totois.penIsUp());
+    }
+
+    @Test
+    @DisplayName("test that there is a sketchpad with size 20")
+    public void test_That_Turtle_Has_A_sketchpad() {
+        SketchPad sketchPad = new SketchPad();
+        assertEquals(20, sketchPad.getFloor().length);
+    }
+
+    @Test
+    @DisplayName("test that turtle has sketchpad")
+    public void test_that_turtle_has_a_sketchpad() {
+        SketchPad sketchPad = totois.getSketchPad();
+        assertEquals(20, sketchPad.getFloor().length);
     }
 }

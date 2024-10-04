@@ -2,9 +2,12 @@ package turtlegraphics;
 
 public class Turtle {
     private Pen pen;
-    private int row;
-    private int column;
+    private Position position;
+    private final SketchPad sketchPad = new SketchPad();
 
+    public Turtle() {
+        position = new Position(0,0);
+    }
     public void createPen(String penName) {
         pen = new Pen(penName);
     }
@@ -24,9 +27,15 @@ public class Turtle {
         pen.movePenUp();
     }
 
-    public void position(int row, int column) {
-        this.row = row;
-        this.column = column;
-        floor.position(row, column);
+    public void setPosition(int row, int column) {
+        position = new Position(row, column);
+    }
+
+    public String getCurrentPosition() {
+        return position.getPosition();
+    }
+
+    public SketchPad getSketchPad() {
+        return sketchPad;
     }
 }
