@@ -155,7 +155,21 @@ public class TurtleTest {
         assertEquals(Coordinate.NORTH, totois.getCoordinate());
         totois.turnLeft();
         assertEquals(Coordinate.WEST, totois.getCoordinate());
-        totois.turnRight();
+        totois.turnLeft();
         assertEquals(Coordinate.SOUTH, totois.getCoordinate());
+    }
+
+    @Test
+    @DisplayName("test that turtle can turn left when it is South and the coordinate will be pointing East")
+    public void test_That_Turtle_Can_Turn_Left_When_It_Is_South_And_Coordinate_Should_Be_East() {
+        assertEquals(Coordinate.EAST, totois.getCoordinate());
+        totois.turnLeft();
+        assertEquals(Coordinate.NORTH, totois.getCoordinate());
+        totois.turnLeft();
+        assertEquals(Coordinate.WEST, totois.getCoordinate());
+        totois.turnLeft();
+        assertEquals(Coordinate.SOUTH, totois.getCoordinate());
+        totois.turnLeft();
+        assertEquals(Coordinate.EAST, totois.getCoordinate());
     }
 }

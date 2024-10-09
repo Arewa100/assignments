@@ -59,8 +59,14 @@ public class Turtle {
     }
 
     public void turnLeft() {
-        if(turtleCoordinate == Coordinate.NORTH) turtleCoordinate = Coordinate.WEST;
-        if(turtleCoordinate == Coordinate.EAST) turtleCoordinate = Coordinate.NORTH;
-        if(turtleCoordinate == Coordinate.WEST) turtleCoordinate = Coordinate.SOUTH;
+        if(turtleCoordinate == Coordinate.WEST) {
+            turtleCoordinate = Coordinate.SOUTH;
+        }else if(turtleCoordinate == Coordinate.NORTH) {
+            turtleCoordinate = Coordinate.WEST;
+        }else if(turtleCoordinate == Coordinate.EAST) {
+            turtleCoordinate = Coordinate.NORTH;
+        }else if(turtleCoordinate == Coordinate.SOUTH) {
+            turtleCoordinate = Coordinate.EAST;
+        }
     }
 }
