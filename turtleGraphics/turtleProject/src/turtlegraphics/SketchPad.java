@@ -1,10 +1,10 @@
 package turtlegraphics;
 
 public class SketchPad {
-    private final int[][] floor = new int[20][20];
+    private final String[][] floor = new String[20][20];
     private Turtle turtle;
 
-    public int[][] getFloor() {
+    public String[][] getFloor() {
         return floor;
     }
 

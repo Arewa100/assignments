@@ -12,4 +12,11 @@ public class Position {
     public String getPosition() {
         return  row + "," + column;
     }
+
+    public int getRow() {
+        return row;
+    }
+    public int getColumn() {
+        return column;
+    }
 }

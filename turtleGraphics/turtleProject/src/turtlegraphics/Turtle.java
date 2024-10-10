@@ -1,5 +1,7 @@
 package turtlegraphics;
 
+import java.util.Arrays;
+
 public class Turtle {
     private Pen pen;
     private Position position;
@@ -67,6 +69,50 @@ public class Turtle {
             turtleCoordinate = Coordinate.NORTH;
         }else if(turtleCoordinate == Coordinate.SOUTH) {
             turtleCoordinate = Coordinate.EAST;
+        }
+    }
+
+    public void draw(int steps) {
+      if (!pen.penIsUp()) {
+          drawOnSketchPad(steps);
+        }
+    }
+
+    private void drawOnSketchPad(int steps) {
+        coordinateIsEast(steps);
+        coordinateIsSouth(steps);
+    }
+
+    private void coordinateIsEast(int steps) {
+        int count = 0;
+        int row = position.getRow();
+        int start = position.getColumn();
+        boolean directionOfTurtleIsEast = Coordinate.EAST.equals(turtleCoordinate);
+        if(directionOfTurtleIsEast) {
+            for (int theColumn = start; theColumn < sketchPad.getFloor()[row].length; theColumn++) {
+                if (count < steps) {
+                    sketchPad.getFloor()[row][theColumn] = "*";
+                }
+                count = count + 1;
+            }
+
+            setPosition(row, start + steps);
+        }
+    }
+
+    private void coordinateIsSouth(int steps) {
+        int count = 0;
+        int row = position.getRow();
+        int start = position.getColumn();
+        boolean directionOfTurtleIsSouth = Coordinate.SOUTH.equals(turtleCoordinate);
+        if(directionOfTurtleIsSouth) {
+            for (int theColumn = start; theColumn < sketchPad.getFloor()[row].length; theColumn++) {
+                if (count < steps) {
+                    sketchPad.getFloor()[row][start] = "*";
+                }
+                row = row + 1;
+                count = count + 1;
+            }
         }
     }
 }

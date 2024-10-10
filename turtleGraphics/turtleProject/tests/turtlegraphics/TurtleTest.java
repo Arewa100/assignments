@@ -74,11 +74,11 @@ public class TurtleTest {
     }
 
     @Test
-    @DisplayName("test that the array floor owned by the turtle is initialized to zero")
-    public void test_that_turtle_floor_is_initialised_to_zeros() {
+    @DisplayName("test that the array floor owned by the turtle is initialized to null")
+    public void test_that_turtle_floor_is_initialised_to_null() {
         SketchPad totoisSketchPad = totois.getSketchPad();
-        for(int[] sketchPad: totoisSketchPad.getFloor()) {
-            assertEquals("[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]", Arrays.toString(sketchPad));
+        for(String[] sketchPad: totoisSketchPad.getFloor()) {
+            assertEquals("[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]", Arrays.toString(sketchPad));
         }
 
     }
@@ -172,4 +172,73 @@ public class TurtleTest {
         totois.turnLeft();
         assertEquals(Coordinate.EAST, totois.getCoordinate());
     }
+
+    @Test
+    @DisplayName("test that turtle can draw a straight line")
+    public void test_That_Turtle_Can_Draw_A_Straight_Line() {
+        assertEquals(Coordinate.EAST, totois.getCoordinate());
+        totois.movePenDown();
+        assertEquals("0,0", totois.getCurrentPosition());
+        totois.draw(10);
+        totois.draw(4);
+        String [][] sketchPad= totois.getSketchPad().getFloor();
+        assertEquals("[*, *, *, *, *, *, *, *, *, *, null, null, null, null, null, null, null, null, null, null]", Arrays.toString(sketchPad[0]));;
+
+    }
+    @Test
+    @DisplayName("test that turtle can start from any where and draw a straight line")
+    public void test_That_Turtle_Can_Start_From_Anywhere() {
+        assertEquals("0,0", totois.getCurrentPosition());
+        totois.setPosition(2, 6);
+        totois.movePenDown();
+        totois.draw(4);
+        String [][] sketchPad= totois.getSketchPad().getFloor();
+        assertEquals("[null, null, null, null, null, null, *, *, *, *, null, null, null, null, null, null, null, null, null, null]", Arrays.toString(sketchPad[2]));
+    }
+
+    @Test
+    @DisplayName("test That_Turtle_Can_Draw_Only_When_Pen_Is_Down")
+    public void test_That_Turtle_Can_Draw_Only_When_Pen_Is_Down() {
+        assertEquals("0,0", totois.getCurrentPosition());
+        totois.setPosition(2, 6);
+        totois.draw(4);
+        String [][] sketchPad= totois.getSketchPad().getFloor();
+        assertEquals("[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]", Arrays.toString(sketchPad[2]));
+        totois.movePenDown();
+        totois.draw(4);
+        assertEquals("[null, null, null, null, null, null, *, *, *, *, null, null, null, null, null, null, null, null, null, null]", Arrays.toString(sketchPad[2]));
+
+    }
+
+    @Test
+    @DisplayName("test that turtle can draw when it turns right")
+    public void test_That_Turtle_Can_Draw_When_Turns_Right() {
+        assertEquals("0,0", totois.getCurrentPosition());
+        totois.setPosition(2, 6);
+        totois.turnRight();
+        totois.movePenDown();
+        totois.draw(10);
+        assertEquals(Coordinate.SOUTH, totois.getCoordinate());
+        SketchPad turtleSketchPad = totois.getSketchPad();
+        for(String[] sketchPad: turtleSketchPad.getFloor()) {
+            System.out.println(Arrays.toString(sketchPad));
+        }
+    }
+    @Test
+    @DisplayName("test to draw a straight line and then a vertical line from the end of that straight line")
+    public void test_To_Draw_A_Straight_Line_And_The_Vertical_Line() {
+        assertEquals("0,0", totois.getCurrentPosition());
+        totois.setPosition(3, 5);
+        totois.movePenDown();
+        totois.draw(10);
+        totois.turnRight();
+        totois.draw(4);
+        SketchPad turtleSketchPad = totois.getSketchPad();
+        for(String[] sketchPad: turtleSketchPad.getFloor()) {
+            System.out.println(Arrays.toString(sketchPad));
+        }
+    }
+
+
+
 }
