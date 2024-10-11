@@ -84,6 +84,75 @@ public class Turtle {
     }
 
     private void coordinateIsEast(int steps) {
+        drawWhenEast(steps);
+    }
+
+    private void coordinateIsSouth(int steps) {
+        if (turtlePositionIsSouth()) {
+            drawWhenSouth(steps);
+
+        }else if(turtlePositionIsWest()) {
+            drawWhenWest(steps);
+        }
+    }
+
+    private void trackPositionWhenEast(int steps) {
+        int row = position.getRow();
+        int column = position.getColumn();
+        setPosition(row, column + (steps - 1));
+    }
+
+    private void trackPositionWhenSouth(int steps) {
+        int row = position.getRow();
+        int column = position.getColumn();
+        setPosition(row + steps, column);
+    }
+
+    private boolean turtlePositionIsSouth() {
+        return Coordinate.SOUTH.equals(turtleCoordinate);
+    }
+
+    private boolean turtlePositionIsNorth() {
+        return Coordinate.NORTH.equals(turtleCoordinate);
+    }
+    private boolean turtlePositionIsEast() {
+        return Coordinate.EAST.equals(turtleCoordinate);
+    }
+
+    private boolean turtlePositionIsWest() {
+        return Coordinate.WEST.equals(turtleCoordinate);
+    }
+
+    private void drawWhenSouth(int steps) {
+        int count = 1;
+        int nextRow = position.getRow() + 1;
+        int start = position.getColumn();
+        if (turtlePositionIsSouth()) {
+            for (int theColumn = 0; theColumn < sketchPad.getFloor()[start].length; theColumn++) {
+                if (count <= steps) {
+                    sketchPad.getFloor()[nextRow][start] = "*";
+                }
+                nextRow = nextRow + 1;
+                count = count + 1;
+            }
+            trackPositionWhenSouth(steps);
+        }
+    }
+    private void drawWhenWest(int steps) {
+        int count = 1;
+        int nextRow = position.getRow() + 1;
+        int start = position.getColumn();
+        if (turtlePositionIsWest()) {
+            for (int theColumn = sketchPad.getFloor()[start].length - 1; theColumn >= 0; theColumn--) {
+                if (count <= steps) {
+                    sketchPad.getFloor()[nextRow][start] = "*";
+                }
+                start = start - 1;
+                count = count + 1;
+            }
+        }
+    }
+    private void drawWhenEast(int steps) {
         int count = 1;
         int row = position.getRow();
         int start = position.getColumn();
@@ -96,39 +165,5 @@ public class Turtle {
             }
             trackPositionWhenEast(steps);
         }
-    }
-
-    private void coordinateIsSouth(int steps) {
-        if (turtlePositionIsSouth()) {
-            int count = 1;
-            int nextRow = position.getRow() + 1;
-            int start = position.getColumn();
-            if (turtlePositionIsSouth()) {
-                for (int theColumn = 0; theColumn < sketchPad.getFloor()[start].length; theColumn++) {
-                    if (count <= steps) {
-                        sketchPad.getFloor()[nextRow][start] = "*";
-                    }
-                    nextRow = nextRow + 1;
-                    count = count + 1;
-                }
-            }
-        }
-    }
-
-    private void trackPositionWhenEast(int steps) {
-        int row = position.getRow();
-        int start = position.getColumn();
-        setPosition(row, start + (steps - 1)); ///this is where  i am
-    }
-
-    private boolean turtlePositionIsSouth() {
-        return Coordinate.SOUTH.equals(turtleCoordinate);
-    }
-
-    private boolean turtlePositionIsNorth() {
-        return Coordinate.NORTH.equals(turtleCoordinate);
-    }
-    private boolean turtlePositionIsEast() {
-        return Coordinate.EAST.equals(turtleCoordinate);
     }
 }

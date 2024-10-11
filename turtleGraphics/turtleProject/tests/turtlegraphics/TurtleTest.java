@@ -229,7 +229,7 @@ public class TurtleTest {
         assertEquals("0,0", totois.getCurrentPosition());
         totois.setPosition(4, 5);
         totois.movePenDown();
-        totois.draw(    10);
+        totois.draw(10);
         totois.turnRight();
         totois.draw(9);
 
@@ -239,6 +239,21 @@ public class TurtleTest {
         }
     }
 
+    @Test
+    @DisplayName("test to draw a straight line and then draw a vertical line facing south")
+    public void test_To_Draw_A_vertical_Line_And_Then_Draw_A_Straight_line_Facing_South() {
+        assertEquals("0,0", totois.getCurrentPosition());
+        totois.setPosition(4, 7);
+        totois.movePenDown();
+        totois.turnRight();
+        totois.draw(10);
+        totois.turnRight();
+        totois.draw(6);
+        SketchPad turtleSketchPad = totois.getSketchPad();
+        for(String[] sketchPad: turtleSketchPad.getFloor()) {
+            System.out.println(Arrays.toString(sketchPad));
+        }
+    }
 
 
 }
