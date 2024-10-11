@@ -180,7 +180,6 @@ public class TurtleTest {
         totois.movePenDown();
         assertEquals("0,0", totois.getCurrentPosition());
         totois.draw(10);
-        totois.draw(4);
         String [][] sketchPad= totois.getSketchPad().getFloor();
         assertEquals("[*, *, *, *, *, *, *, *, *, *, null, null, null, null, null, null, null, null, null, null]", Arrays.toString(sketchPad[0]));;
 
@@ -225,14 +224,15 @@ public class TurtleTest {
         }
     }
     @Test
-    @DisplayName("test to draw a straight line and then a vertical line from the end of that straight line")
+    @DisplayName("test to draw a straight line and a vertical line from the end of that straight line")
     public void test_To_Draw_A_Straight_Line_And_The_Vertical_Line() {
         assertEquals("0,0", totois.getCurrentPosition());
-        totois.setPosition(3, 5);
+        totois.setPosition(4, 5);
         totois.movePenDown();
-        totois.draw(10);
+        totois.draw(    10);
         totois.turnRight();
-        totois.draw(4);
+        totois.draw(9);
+
         SketchPad turtleSketchPad = totois.getSketchPad();
         for(String[] sketchPad: turtleSketchPad.getFloor()) {
             System.out.println(Arrays.toString(sketchPad));
