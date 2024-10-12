@@ -1,7 +1,5 @@
 package turtlegraphics;
 
-import java.util.Arrays;
-
 public class Turtle {
     private Pen pen;
     private Position position;
@@ -81,6 +79,8 @@ public class Turtle {
     private void drawOnSketchPad(int steps) {
         coordinateIsEast(steps);
         coordinateIsSouth(steps);
+        coordinateIsWest(steps);
+        coordinateIsNorth(steps);
     }
 
     private void coordinateIsEast(int steps) {
@@ -88,12 +88,15 @@ public class Turtle {
     }
 
     private void coordinateIsSouth(int steps) {
-        if (turtlePositionIsSouth()) {
-            drawWhenSouth(steps);
+        if (turtlePositionIsSouth()) drawWhenSouth(steps);
+    }
 
-        }else if(turtlePositionIsWest()) {
-            drawWhenWest(steps);
-        }
+    private void coordinateIsWest(int steps) {
+        if(turtlePositionIsWest()) drawWhenWest(steps);
+    }
+
+    private void coordinateIsNorth(int steps) {
+        if(turtlePositionIsNorth()) drawWhenNorth(steps);
     }
 
     private void trackPositionWhenEast(int steps) {
@@ -106,6 +109,11 @@ public class Turtle {
         int row = position.getRow();
         int column = position.getColumn();
         setPosition(row + steps, column);
+    }
+
+    private void trackPositionWhenWest(int column) {
+        int row = position.getRow();
+        setPosition(row, column);
     }
 
     private boolean turtlePositionIsSouth() {
@@ -138,18 +146,23 @@ public class Turtle {
             trackPositionWhenSouth(steps);
         }
     }
-    private void drawWhenWest(int steps) {
+    private void drawWhenWest(int steps)  {
         int count = 1;
+        int newStart = 0;
         int nextRow = position.getRow() + 1;
         int start = position.getColumn();
+        System.out.println(start);
         if (turtlePositionIsWest()) {
             for (int theColumn = sketchPad.getFloor()[start].length - 1; theColumn >= 0; theColumn--) {
                 if (count <= steps) {
                     sketchPad.getFloor()[nextRow][start] = "*";
+                    newStart = start;
                 }
+                System.out.println(newStart);
                 start = start - 1;
                 count = count + 1;
             }
+            trackPositionWhenWest(newStart);
         }
     }
     private void drawWhenEast(int steps) {
@@ -164,6 +177,21 @@ public class Turtle {
                 count = count + 1;
             }
             trackPositionWhenEast(steps);
+        }
+    }
+    private void drawWhenNorth(int steps) {
+        int count = 1;
+        int nextRow = position.getRow();
+        System.out.println(nextRow);
+        int start = position.getColumn();
+        if (turtlePositionIsNorth()) {
+            for (int theColumn = 0; theColumn < sketchPad.getFloor()[start].length; theColumn++) {
+                if (count <= steps) {
+                    sketchPad.getFloor()[nextRow][start] = "*";
+                }
+                nextRow = nextRow - 1;
+                count = count + 1;
+            }
         }
     }
 }

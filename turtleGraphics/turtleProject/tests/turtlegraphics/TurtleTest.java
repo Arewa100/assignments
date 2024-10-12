@@ -4,14 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
 import java.util.Arrays;
 
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TurtleTest {
+public class  TurtleTest {
     private Turtle totois;
 
     @BeforeEach
@@ -74,11 +73,11 @@ public class TurtleTest {
     }
 
     @Test
-    @DisplayName("test that the array floor owned by the turtle is initialized to null")
+    @DisplayName("test that the array floor owned by the turtle is initialized to empty space")
     public void test_that_turtle_floor_is_initialised_to_null() {
         SketchPad totoisSketchPad = totois.getSketchPad();
         for(String[] sketchPad: totoisSketchPad.getFloor()) {
-            assertEquals("[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]", Arrays.toString(sketchPad));
+            assertEquals("[ ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ]", Arrays.toString(sketchPad));
         }
 
     }
@@ -181,7 +180,7 @@ public class TurtleTest {
         assertEquals("0,0", totois.getCurrentPosition());
         totois.draw(10);
         String [][] sketchPad= totois.getSketchPad().getFloor();
-        assertEquals("[*, *, *, *, *, *, *, *, *, *, null, null, null, null, null, null, null, null, null, null]", Arrays.toString(sketchPad[0]));;
+        assertEquals("[*, *, *, *, *, *, *, *, *, *,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ]", Arrays.toString(sketchPad[0]));;
 
     }
     @Test
@@ -192,7 +191,7 @@ public class TurtleTest {
         totois.movePenDown();
         totois.draw(4);
         String [][] sketchPad= totois.getSketchPad().getFloor();
-        assertEquals("[null, null, null, null, null, null, *, *, *, *, null, null, null, null, null, null, null, null, null, null]", Arrays.toString(sketchPad[2]));
+        assertEquals("[ ,  ,  ,  ,  ,  , *, *, *, *,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ]", Arrays.toString(sketchPad[2]));
     }
 
     @Test
@@ -202,10 +201,10 @@ public class TurtleTest {
         totois.setPosition(2, 6);
         totois.draw(4);
         String [][] sketchPad= totois.getSketchPad().getFloor();
-        assertEquals("[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]", Arrays.toString(sketchPad[2]));
+        assertEquals("[ ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ]", Arrays.toString(sketchPad[2]));
         totois.movePenDown();
         totois.draw(4);
-        assertEquals("[null, null, null, null, null, null, *, *, *, *, null, null, null, null, null, null, null, null, null, null]", Arrays.toString(sketchPad[2]));
+        assertEquals("[ ,  ,  ,  ,  ,  , *, *, *, *,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ]", Arrays.toString(sketchPad[2]));
 
     }
 
@@ -240,8 +239,8 @@ public class TurtleTest {
     }
 
     @Test
-    @DisplayName("test to draw a straight line and then draw a vertical line facing south")
-    public void test_To_Draw_A_vertical_Line_And_Then_Draw_A_Straight_line_Facing_South() {
+    @DisplayName("test to draw a vertical line and then draw a straight line facing west")
+    public void test_To_Draw_A_vertical_Line_And_Then_Draw_A_Straight_line_Facing_west() {
         assertEquals("0,0", totois.getCurrentPosition());
         totois.setPosition(4, 7);
         totois.movePenDown();
@@ -249,11 +248,30 @@ public class TurtleTest {
         totois.draw(10);
         totois.turnRight();
         totois.draw(6);
+
         SketchPad turtleSketchPad = totois.getSketchPad();
         for(String[] sketchPad: turtleSketchPad.getFloor()) {
             System.out.println(Arrays.toString(sketchPad));
         }
     }
 
+    @Test
+    @DisplayName("test to draw vertical line facing south, horizontal facing west and vertical facing north")
+    public void test_To_Draw_Line_Facing_North() {
+        assertEquals("0,0", totois.getCurrentPosition());
+        totois.setPosition(4, 10);
+        totois.movePenDown();
+        totois.turnRight();
+        totois.draw(10);
+        totois.turnRight();
+        totois.draw(4);
+        totois.turnRight();
+        totois.draw(10);
+
+        SketchPad turtleSketchPad = totois.getSketchPad();
+        for(String[] sketchPad: turtleSketchPad.getFloor()) {
+            System.out.println(Arrays.toString(sketchPad));
+        }
+    }
 
 }
