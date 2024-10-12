@@ -267,7 +267,27 @@ public class  TurtleTest {
         totois.draw(4);
         totois.turnRight();
         totois.draw(10);
+        SketchPad turtleSketchPad = totois.getSketchPad();
+        for(String[] sketchPad: turtleSketchPad.getFloor()) {
+            System.out.println(Arrays.toString(sketchPad));
+        }
+    }
 
+    @Test
+    @DisplayName("test to draw a box")
+    public void test_To_Draw_A_Box() {
+        assertEquals("0,0", totois.getCurrentPosition());
+        totois.setPosition(4, 10);
+        totois.movePenDown();
+        totois.turnRight();
+        totois.draw(9);
+        totois.turnRight();
+        totois.draw(6);
+        totois.turnRight();
+        totois.draw(9);
+        totois.turnRight();
+        totois.draw(6);
+        totois.turnRight();
         SketchPad turtleSketchPad = totois.getSketchPad();
         for(String[] sketchPad: turtleSketchPad.getFloor()) {
             System.out.println(Arrays.toString(sketchPad));

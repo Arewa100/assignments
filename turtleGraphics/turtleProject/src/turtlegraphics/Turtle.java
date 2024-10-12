@@ -116,6 +116,10 @@ public class Turtle {
         setPosition(row, column);
     }
 
+    private void trackPositionWhenNorth(int row, int column) {
+        setPosition(row-1, column);
+    }
+
     private boolean turtlePositionIsSouth() {
         return Coordinate.SOUTH.equals(turtleCoordinate);
     }
@@ -137,9 +141,7 @@ public class Turtle {
         int start = position.getColumn();
         if (turtlePositionIsSouth()) {
             for (int theColumn = 0; theColumn < sketchPad.getFloor()[start].length; theColumn++) {
-                if (count <= steps) {
-                    sketchPad.getFloor()[nextRow][start] = "*";
-                }
+                if (count <= steps) sketchPad.getFloor()[nextRow][start] = "*";
                 nextRow = nextRow + 1;
                 count = count + 1;
             }
@@ -151,14 +153,12 @@ public class Turtle {
         int newStart = 0;
         int nextRow = position.getRow() + 1;
         int start = position.getColumn();
-        System.out.println(start);
         if (turtlePositionIsWest()) {
             for (int theColumn = sketchPad.getFloor()[start].length - 1; theColumn >= 0; theColumn--) {
                 if (count <= steps) {
                     sketchPad.getFloor()[nextRow][start] = "*";
                     newStart = start;
                 }
-                System.out.println(newStart);
                 start = start - 1;
                 count = count + 1;
             }
@@ -181,17 +181,19 @@ public class Turtle {
     }
     private void drawWhenNorth(int steps) {
         int count = 1;
+        int newRowValue = 0;
         int nextRow = position.getRow();
-        System.out.println(nextRow);
         int start = position.getColumn();
         if (turtlePositionIsNorth()) {
             for (int theColumn = 0; theColumn < sketchPad.getFloor()[start].length; theColumn++) {
                 if (count <= steps) {
                     sketchPad.getFloor()[nextRow][start] = "*";
+                    newRowValue = nextRow;
                 }
                 nextRow = nextRow - 1;
                 count = count + 1;
             }
+            trackPositionWhenNorth(newRowValue, start);
         }
     }
 }
