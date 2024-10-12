@@ -9,7 +9,7 @@ public class LinkedList {
     public LinkedList() {
         head = null;
         last = null;
-        size = 0;
+        size = 1;
     }
     public void insert(int data) {
         if(headIsNotEmpty()) insertDataIfHeadIsNotEmpty(data);
@@ -35,16 +35,16 @@ public class LinkedList {
         return head == null;
     }
 
-    public int getLastData() {
-        return last.getData();
+    public Node back() {
+        return last;
     }
 
-    public Node getLastNode() {
+    public Node front() {
         return head;
     }
 
     public int size() {
-        size = 0;
+        size = 1;
         Node currentNode = head;
         iterateThroughNodeAddresses(currentNode);
        return size;
@@ -72,5 +72,37 @@ public class LinkedList {
             indexCount = indexCount + 1;
             currentNode = currentNode.getLinkedNode();
         }
+    }
+
+    public void deleteNode(int nodeIndex) {
+        deleteAtGivenIndex(nodeIndex);
+    }
+
+    private void deleteAtGivenIndex(int nodeIndex) {
+        Node currentNode = head;
+        int indexCount = 0;
+        int previousNodeIndex = nodeIndex - 1;
+        while(currentNode != null) {
+            if(indexCount == previousNodeIndex) {
+                currentNode.insertCurrentNodeAtAddress(currentNode.getLinkedNode().getLinkedNode());
+            }
+            indexCount = indexCount + 1;
+            currentNode = currentNode.getLinkedNode();
+        }
+    }
+
+    public void insertAtStart(int data) {
+        Node newNode = new Node(data);
+        newNode.insertCurrentNodeAtAddress(head);
+        head = newNode;
+    }
+
+
+    public boolean isEmpty() {
+        return headIsEmpty();
+    }
+
+    public void destroyList() {
+        head = null;
     }
 }
