@@ -102,5 +102,38 @@ public class LinkedListTest {
         assertTrue(linkedList.isEmpty());
     }
 
+    @Test
+    public void test_To_Display_Data_Of_Component_In_A_linked_List() {
+        linkedList.insert(20);
+        linkedList.insert(30);
+        linkedList.insert(40);
+        String expectedList = "[20, 30, 40]";
+        String listResult = linkedList.display();
+        assertEquals(expectedList, listResult);
+    }
+
+    @Test
+    public void test_To_Search_If_An_Item_Is_In_A_Linked_List() {
+        linkedList.insert(20);
+        linkedList.insert(30);
+        linkedList.insert(40);
+        linkedList.insert(33);
+        linkedList.insert(18);
+        linkedList.insert(10);
+        assertTrue(linkedList.search(18));
+
+    }
+
+    @Test
+    public void test_To_Search_If_An_Item_Is_not_In_A_Linked_List() {
+        linkedList.insert(20);
+        linkedList.insert(30);
+        linkedList.insert(40);
+        linkedList.insert(33);
+        linkedList.insert(18);
+        linkedList.insert(10);
+        assertFalse(linkedList.search(5));
+
+    }
 
 }

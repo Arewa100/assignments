@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.Arrays;
+
 public class LinkedList {
     private Node head;
     private Node last;
@@ -104,5 +106,28 @@ public class LinkedList {
 
     public void destroyList() {
         head = null;
+    }
+
+    public String display() {
+       int[] arrayOfDataOfEachNodeInTheLinkedList = new int[size()];
+       Node currentNode = head;
+       int count = 0;
+       while(currentNode != null) {
+           arrayOfDataOfEachNodeInTheLinkedList[count] = currentNode.getData();
+           currentNode = currentNode.getLinkedNode();
+           count++;
+       }
+       return Arrays.toString(arrayOfDataOfEachNodeInTheLinkedList);
+    }
+
+    public boolean search(int data) {
+        Node currentNode = head;
+        while(currentNode != null) {
+            if(currentNode.getData() == data) {
+                return true;
+            }
+            currentNode = currentNode.getLinkedNode();
+        }
+        return false;
     }
 }
