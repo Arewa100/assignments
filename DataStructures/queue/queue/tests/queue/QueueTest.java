@@ -27,7 +27,7 @@ public class QueueTest {
         assertFalse(queue.isEmptyQueue());
     }
     @Test
-    public void test_That_To_Add_10_Element_To_The_Queue() {
+    public void test_To_Add_10_Element_To_The_Queue_And_Check_If_It_Is_Full() {
         for(int index = 1; index <= 10; index++) {
             queue.enQueue(index);
         }
