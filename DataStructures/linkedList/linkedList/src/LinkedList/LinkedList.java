@@ -9,7 +9,7 @@ public class LinkedList {
     public LinkedList() {
         head = null;
         last = null;
-        size = 1;
+        size = 0;
     }
     public void insert(int data) {
         if(headIsNotEmpty()) insertDataIfHeadIsNotEmpty(data);
@@ -44,14 +44,14 @@ public class LinkedList {
     }
 
     public int size() {
-        size = 1;
+        size = 0;
         Node currentNode = head;
         iterateThroughNodeAddresses(currentNode);
        return size;
     }
 
     private void iterateThroughNodeAddresses(Node currentNode) {
-        while(currentNode.getLinkedNode() != null) {
+        while(currentNode != null) {
             size++;
             currentNode = currentNode.getLinkedNode();
         }
