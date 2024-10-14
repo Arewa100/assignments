@@ -81,8 +81,6 @@ public class Map<T> {
         iterateThroughValueError(indexOfTheKey);
         decreaseSize();
         increaseCapacity();
-        System.out.println(Arrays.toString(this.key));
-        System.out.println(Arrays.toString(this.value));
     }
 
     private void decreaseSize() {
@@ -148,6 +146,16 @@ public class Map<T> {
 
     private void increaseCapacityWhenFull() {
         if (capacity == 0) capacity = size * 2;
+    }
+    @Override
+    public String toString() {
+        String map = "";
+        for(int index = 0; index < this.key.length; index++) {
+            String newValue = String.valueOf(value[index]);
+            map = map + String.format("%s: %s", this.key[index], newValue) + ", ";
+
+        }
+        return "{ " + map + " }";
     }
 
 }

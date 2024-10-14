@@ -105,4 +105,14 @@ public class MapTest {
 //        assertEquals("football", map.get("newKey"));
 //    }
 
+    @Test
+    public void test_To_Print_Map() {
+        Map<String> map = new Map<>(10);
+        map.insert("North", "Kogi");
+        map.insert("West", "lagos");
+        map.insert("king", "Arewaking");
+        map.insert("queen", "Jenifer");
+        map.insert("prince", "Caleb");
+        assertEquals("{ North: Kogi, West: lagos, king: Arewaking, queen: Jenifer, prince: Caleb, null: null, null: null, null: null, null: null, null: null,  }", map.toString());
+    }
 }
