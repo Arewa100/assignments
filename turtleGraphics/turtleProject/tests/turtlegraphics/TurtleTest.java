@@ -265,10 +265,7 @@ public class  TurtleTest {
         totois.draw(4);
         totois.turnRight();
         totois.draw(10);
-        SketchPad turtleSketchPad = totois.getSketchPad();
-        for(String[] sketchPad: turtleSketchPad.getFloor()) {
-            System.out.println(Arrays.toString(sketchPad));
-        }
+        totois.display();
     }
 
     @Test
@@ -293,10 +290,7 @@ public class  TurtleTest {
         totois.draw(6);
         totois.turnRight();
         totois.draw(6);
-        SketchPad turtleSketchPad = totois.getSketchPad();
-        for(String[] sketchPad: turtleSketchPad.getFloor()) {
-            System.out.println(Arrays.toString(sketchPad));
-        }
+        totois.display();
     }
 
 
@@ -317,13 +311,20 @@ public class  TurtleTest {
         totois.turnRight();
         totois.draw(11);
 
-        SketchPad turtleSketchPad = totois.getSketchPad();
-        for(String[] sketchPad: turtleSketchPad.getFloor()) {
-            for(int positions = 0; positions < sketchPad.length; positions++) {
-                System.out.print(sketchPad[positions]);
-            }
-            System.out.println();
-        }
+        totois.setPosition(4, 20);
+        totois.turnRight();
+        totois.draw(8);
+        totois.turnRight();
+        totois.draw(5);
+        totois.turnLeft();
+        totois.draw(5);
+        totois.turnRight();
+        totois.draw(5);
+        totois.turnRight();
+        totois.draw(12);
+        totois.turnRight();
+        totois.draw(11);
+        totois.display();
 
 
     }

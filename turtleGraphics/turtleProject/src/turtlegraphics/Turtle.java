@@ -1,5 +1,7 @@
 package turtlegraphics;
 
+import java.util.Arrays;
+
 public class Turtle {
     private Pen pen;
     private Position position;
@@ -196,6 +198,14 @@ public class Turtle {
             trackPositionWhenNorth(newRowValue, start);
 
 
+        }
+    }
+
+
+    public void display() {
+
+        for(String[] sketchPad: sketchPad.getFloor()) {
+            System.out.println(Arrays.toString(sketchPad));
         }
     }
 }
