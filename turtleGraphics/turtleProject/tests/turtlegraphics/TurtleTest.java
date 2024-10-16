@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class  TurtleTest {
@@ -287,11 +285,47 @@ public class  TurtleTest {
         totois.draw(9);
         totois.turnRight();
         totois.draw(6);
+        totois.setPosition(4, 12);
+        totois.draw(6);
         totois.turnRight();
+        totois.draw(6);
+        totois.turnRight();
+        totois.draw(6);
+        totois.turnRight();
+        totois.draw(6);
         SketchPad turtleSketchPad = totois.getSketchPad();
         for(String[] sketchPad: turtleSketchPad.getFloor()) {
             System.out.println(Arrays.toString(sketchPad));
         }
+    }
+
+
+    @Test
+    public void test_That_Turtle_Can_Turn_Left_When_Facing_East() {
+        assertEquals("0,0", totois.getCurrentPosition());
+        totois.setPosition(4, 4);
+        totois.movePenDown();
+        totois.draw(8);
+        totois.turnRight();
+        totois.draw(5);
+        totois.turnLeft();
+        totois.draw(5);
+        totois.turnRight();
+        totois.draw(5);
+        totois.turnRight();
+        totois.draw(12);
+        totois.turnRight();
+        totois.draw(11);
+
+        SketchPad turtleSketchPad = totois.getSketchPad();
+        for(String[] sketchPad: turtleSketchPad.getFloor()) {
+            for(int positions = 0; positions < sketchPad.length; positions++) {
+                System.out.print(sketchPad[positions]);
+            }
+            System.out.println();
+        }
+
+
     }
 
 }

@@ -194,6 +194,8 @@ public class Turtle {
                 count = count + 1;
             }
             trackPositionWhenNorth(newRowValue, start);
+
+
         }
     }
 }

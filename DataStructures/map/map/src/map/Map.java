@@ -72,13 +72,13 @@ public class Map<T> {
     }
 
     public void delete(String key) {
-        deleteTheByUsingKey(key);
+        deleteThePairByUsingKey(key);
     }
 
-    private void deleteTheByUsingKey(String key) {
+    private void deleteThePairByUsingKey(String key) {
         int indexOfTheKey = getKeyIndex(key);
-        iterateThroughKeyArray(indexOfTheKey);
-        iterateThroughValueError(indexOfTheKey);
+        iterateThroughKeyArrayAndDeleteKey(indexOfTheKey);
+        iterateThroughValueArrayAndDeleteValue(indexOfTheKey);
         decreaseSize();
         increaseCapacity();
     }
@@ -91,7 +91,7 @@ public class Map<T> {
         capacity = capacity + 1;
     }
 
-    private void iterateThroughValueError(int indexOfTheKey) {
+    private void iterateThroughValueArrayAndDeleteValue(int indexOfTheKey) {
         for (int index = 0; index < this.key.length; index++) {
             if (indexOfTheKey == index) {
                 pushTheNextValueToPositionOfTheDeletedValue(index);
@@ -130,7 +130,7 @@ public class Map<T> {
     private void turnKeyInPositionOfCurrentPushedKeyToNull(int index) {
         this.key[index + 2] = null;
     }
-    private void iterateThroughKeyArray(int indexOfTheKey) {
+    private void iterateThroughKeyArrayAndDeleteKey(int indexOfTheKey) {
         for (int index = 0; index < this.key.length; index++) {
             if (indexOfTheKey == index) {
                 pushTheNextKeyToPositionOfTheDeletedKey(index);
@@ -146,7 +146,8 @@ public class Map<T> {
 
     private void increaseCapacityWhenFull() {
         if (capacity == 0) capacity = size * 2;
-    }
+    } //i'm here
+
     @Override
     public String toString() {
         String map = "";
