@@ -3,6 +3,7 @@ package diary;
 public class Diary {
     private boolean isLocked = false;
     private String password;
+    private boolean isEmpty = true;
     private int numberOFEntry = 0;
 
     public Diary(String password) {
@@ -17,14 +18,17 @@ public class Diary {
         isLocked = true;
     }
 
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+
     public void unlock(String password) {
         if(password.equals(this.password)) isLocked = false;
     }
 
     public void createEntry(String title, String body) {
-        numberOFEntry++;
+        if(!isLocked) isEmpty = false;
     }
-
 
     public int getNumberOfEntry() {
         return numberOFEntry;

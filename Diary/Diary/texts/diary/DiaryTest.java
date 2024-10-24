@@ -41,12 +41,27 @@ public class DiaryTest {
     }
 
     @Test
-    public void test_That_We_Can_Add_Item_Entry_ToDiary() {
+    public void test_That_Diary_IsEmpty() {
+        diary.lock();
+        diary.unlock("correctPassword");
+        assertTrue(diary.isEmpty());
+    }
+
+    @Test
+    public void test_That_When_WeAddItemToDiary_It_Is_Not_Empty() {
         diary.lock();
         assertTrue(diary.isLocked());
         diary.unlock("correctPassword");
         assertFalse(diary.isLocked());
         diary.createEntry("Title1", "Ola to School");
-        assertEquals(1, diary.getNumberOfEntry());
+        assertFalse(diary.isEmpty());
+    }
+
+    @Test
+    public void test_That_Entries_CanNotBeAddedToDiaryWhenItIsLocked() {
+        diary.lock();
+        assertTrue(diary.isLocked());
+        diary.createEntry("Title1", "Ola to School");
+        assertTrue(diary.isEmpty());
     }
 }
