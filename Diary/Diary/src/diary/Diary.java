@@ -1,10 +1,13 @@
 package diary;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Diary {
     private boolean isLocked = false;
-    private String password;
-    private boolean isEmpty = true;
-    private int numberOFEntry = 0;
+    private final String password;
+    private final List<Entry> listOfEntries = new ArrayList<>();
+
 
     public Diary(String password) {
         this.password = password;
@@ -19,7 +22,7 @@ public class Diary {
     }
 
     public boolean isEmpty() {
-        return isEmpty;
+        return listOfEntries.isEmpty();
     }
 
     public void unlock(String password) {
@@ -27,10 +30,34 @@ public class Diary {
     }
 
     public void createEntry(String title, String body) {
-        if(!isLocked) isEmpty = false;
+        if(!isLocked) {
+            createANewEntry(title, body);
+        }
+    }
+
+    private void createANewEntry(String title, String body) {
+        Entry entry = new Entry(title, body, listOfEntries.size() + 1);
+        listOfEntries.add(entry);
     }
 
     public int getNumberOfEntry() {
-        return numberOFEntry;
+        return listOfEntries.size();
+    }
+
+    public Entry findEntryById(int entryId) {
+        return findEntry(entryId);
+    }
+
+    public void update(int id, String newTitle, String newBody) {
+        Entry entry = findEntryById(id);
+        entry.setTitle(newTitle);
+        entry.setBody(newBody);
+    }
+
+    private Entry findEntry(int entryId) {
+        for(Entry entry: listOfEntries) {
+            if(entry.getId() == entryId) return entry;
+        }
+        return null;
     }
 }
