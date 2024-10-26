@@ -5,8 +5,13 @@ import java.util.List;
 public class Diary {
     private String userName;
     private String password;
-    private boolean isLocked;
+    private boolean isLocked = true;
     private List<Entry> entries;
+
+    public Diary(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
 
     public String getUserName() {
         return userName;

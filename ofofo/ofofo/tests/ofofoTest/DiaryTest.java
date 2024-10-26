@@ -16,11 +16,12 @@ public class DiaryTest {
     }
 
     @Test
-    public void test_That_When_WeAddTo_Diary_It_Is_Not_Empty() {
-        assertEquals(0, diaryRepository.count());
-        Diary diary = new Diary();
-        diaryRepository.add(diary);
+    public void test_To_Add_Diary_To_Repository_Number_Of_Diary_Saved_Is_One() {
+        Diary diary = new Diary("Miracle", "correctPassword");
+        diaryRepository.save(diary);
         assertEquals(1, diaryRepository.count());
-
     }
+
+
+
 }

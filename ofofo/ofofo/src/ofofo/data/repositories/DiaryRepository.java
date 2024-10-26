@@ -5,9 +5,11 @@ import models.Diary;
 import java.util.List;
 
 public class DiaryRepository implements DiaryRepositoryImpl {
+    private int count = 0;
+
     @Override
-    public Diary add(Diary diary) {
-        return null;
+    public void save(Diary diary) {
+        count++;
     }
 
     @Override
@@ -31,7 +33,7 @@ public class DiaryRepository implements DiaryRepositoryImpl {
     }
 
     @Override
-    public long count() {
-        return 0;
+    public int count() {
+        return count;
     }
 }

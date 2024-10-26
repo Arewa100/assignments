@@ -5,15 +5,11 @@ import models.Diary;
 import java.util.List;
 
 public interface DiaryRepositoryImpl {
-    Diary add(Diary diary);
-
+    void save(Diary diary);
     List<Diary> findByiId(String userName);
-
     List<Diary> findByTitle(String title);
-
     void delete(Diary diary);
-
     void delete(int id);
-
-    long count();
+    int count();
 }
+
