@@ -6,7 +6,7 @@ public class Diary {
     private String userName;
     private String password;
     private boolean isLocked = true;
-    private List<Entry> entries;
+
 
     public Diary(String userName, String password) {
         this.userName = userName;
@@ -37,12 +37,12 @@ public class Diary {
         isLocked = locked;
     }
 
-    public List<Entry> getEntries() {
-        return entries;
-    }
-
-    public void setEntries(List<Entry> entries) {
-        this.entries = entries;
-    }
+//    public List<Entry> getEntries() {
+//        return entries;
+//    }
+//
+//    public void setEntries(List<Entry> entries) {
+//        this.entries = entries;
+//    }
 }
 

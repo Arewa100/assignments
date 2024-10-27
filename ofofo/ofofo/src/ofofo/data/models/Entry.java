@@ -1,12 +1,20 @@
 package models;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Entry {
     private String title;
     private String body;
     private int Id;
-    private java.util.Date date;
+    private LocalDate date;
+
+    public Entry(String title, String body, int Id) {
+        this.title = title;
+        this.body = body;
+        this.Id = Id;
+        this.date = LocalDate.now();
+    }
 
     public String getTitle() {
         return title;
@@ -32,11 +40,11 @@ public class Entry {
         Id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 }
