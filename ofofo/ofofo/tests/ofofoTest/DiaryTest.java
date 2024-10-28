@@ -82,7 +82,7 @@ public class DiaryTest {
     }
 
     @Test
-    public void test_To_That_Diary_Can_Be_Deleted_By_Diary() {
+    public void test_That_Diary_Can_Be_Deleted_By_Diary_As_Argument() {
         Diary diary = new Diary("Miracle", "correctPassword");
         diaryRepository.save(diary);
         assertEquals(1, diaryRepository.count());
@@ -90,4 +90,7 @@ public class DiaryTest {
         assertEquals(0, diaryRepository.count());
         assertNull(diaryRepository.findById("Miracle"));
     }
+
+
+
 }

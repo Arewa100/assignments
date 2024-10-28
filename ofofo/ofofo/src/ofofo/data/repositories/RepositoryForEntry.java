@@ -74,6 +74,17 @@ public class RepositoryForEntry implements EntryRepository{
     }
 
     @Override
+    public void update(int id, String title, String body) {
+        for (int index = 0; index < entries.size(); index++) {;
+            Entry entry = entries.get(index);
+            if (entryIdMatchesGivenId(entry, id)) {
+                entry.setTitle(title);
+                entry.setBody(body);
+            }
+        }
+    }
+
+    @Override
     public long count() {
         return count;
     }

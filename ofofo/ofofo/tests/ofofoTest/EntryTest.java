@@ -103,5 +103,16 @@ public class EntryTest {
         System.out.println(entryRepository.getDate(1));
     }
 
+    @Test
+    public void testToCreateEntry_And_UpdateTheEntry() {
+        Entry entry = new Entry("title" , "body", 1);
+        entryRepository.save(entry);
+        assertEquals("title", entryRepository.findById(1).getTitle());
+        assertEquals("body", entryRepository.findById(1).getBody());
+        entryRepository.update(1, "newTitle", "newBody");
+        assertEquals("newTitle", entryRepository.findById(1).getTitle());
+        assertEquals("newBody", entryRepository.findById(1).getBody());
+    }
+
 
 }

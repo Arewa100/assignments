@@ -12,5 +12,6 @@ public interface EntryRepository {
     void delete(String title);
     void delete(int id);
     LocalDate getDate(int id);
+    void update(int id, String title, String body);
     long count();
 }
