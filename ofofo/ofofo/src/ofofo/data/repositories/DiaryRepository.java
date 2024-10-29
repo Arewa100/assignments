@@ -8,7 +8,7 @@ public interface DiaryRepository {
     void save(Diary diary);
     Diary findById(String userName);
     void delete(Diary diary);
-    void delete(String id);
+    void delete(String diaryId);
     long count();
 }
 

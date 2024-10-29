@@ -7,7 +7,7 @@ import java.util.List;
 
 public class RepositoryForDiary implements DiaryRepository{
     private int count = 0;
-    private List<Diary> diaries = new ArrayList<>();
+    private final List<Diary> diaries = new ArrayList<>();
 
     @Override
     public void save(Diary diary) {

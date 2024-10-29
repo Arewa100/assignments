@@ -83,14 +83,26 @@ public class EntryTest {
     }
 
     @Test
-    public void testToSaveTwoEntryAndDeleteOne_One_Item_IsRemaining() {
+    public void testToSaveTwoEntryAndDeleteOne_One_Entry_IsRemaining() {
         Entry entry = new Entry("firstUser", 1, "firstUserTitle", "body");
         Entry secondEntry = new Entry("firstUser", 2, "firstUserTitleTwo", "body2");
         entryRepository.save(entry);
         entryRepository.save(secondEntry);
         assertEquals(2, entryRepository.countNumberOfEntries());
-        entryRepository.
+        entryRepository.delete("firstUser", 1);
+        assertEquals(1, entryRepository.findAll("firstUser").size());
+        assertEquals(1, entryRepository.countNumberOfEntries());
     }
+
+    @Test
+    public void testThatWeCanUpdateEntryTitleAndBody() {
+        Entry entry = new Entry("firstUser", 1, "title", "body");
+        entryRepository.save(entry);
+        assertEquals("title", entryRepository.findById("firstUser", 1).getTitle());
+        entryRepository.update("firstUser", 1, "newTitle", "newBody");
+        assertEquals("newTitle", entryRepository.findById("firstUser", 1).getTitle());
+    }
+
 
 
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositoryForEntry implements EntryRepository {
-    private List<Entry> entries = new ArrayList<>();
+    private final List<Entry> entries = new ArrayList<>();
     private int entryCounter = 0;
 
     @Override
@@ -18,11 +18,10 @@ public class RepositoryForEntry implements EntryRepository {
 
     @Override
     public Entry findById(String diaryId, int entryId) {
-        for(int index = 0; index < entries.size(); index++) {
-            Entry entry = entries.get(index);
-            if(diaryIdAndEntryIdIsValid(diaryId, entryId, entry)) {
+        for (Entry entry : entries) {
+            if (diaryIdAndEntryIdIsValid(diaryId, entryId, entry)) {
                 return entry;
-            };
+            }
         }
         return null;
     }
@@ -33,9 +32,8 @@ public class RepositoryForEntry implements EntryRepository {
 
     @Override
     public Entry findByTitle(String diaryId, String title) {
-        for(int index = 0; index < entries.size(); index++) {
-            Entry entry = entries.get(index);
-            if(diaryIdAndTitleIsValid(diaryId, title, entry)) {
+        for (Entry entry : entries) {
+            if (diaryIdAndTitleIsValid(diaryId, title, entry)) {
                 return entry;
             }
         }
@@ -45,9 +43,8 @@ public class RepositoryForEntry implements EntryRepository {
     @Override
     public List<Entry> findAll(String diaryId) {
         List<Entry> listOfFoundEntries = new ArrayList<>();
-        for(int index = 0; index < entries.size(); index++) {
-            Entry entry = entries.get(index);
-            if(diaryIdIsFound(diaryId, entry)) {
+        for (Entry entry : entries) {
+            if (diaryIdIsFound(diaryId, entry)) {
                 listOfFoundEntries.add(entry);
             }
         }
@@ -64,7 +61,13 @@ public class RepositoryForEntry implements EntryRepository {
 
     @Override
     public void delete(String diaryId, int entryId) {
-
+        for(int index = 0; index < entries.size(); index++) {
+            Entry entry = entries.get(index);
+            if(diaryIdAndEntryIdIsValid(diaryId, entryId, entry)) {
+                entries.remove(entry);
+                entryCounter--;
+            };
+        }
     }
 
     @Override
@@ -74,7 +77,12 @@ public class RepositoryForEntry implements EntryRepository {
 
     @Override
     public void update(String diaryId, int entryId, String title, String body) {
-
+        for (Entry entry : entries) {
+            if (diaryIdAndEntryIdIsValid(diaryId, entryId, entry)) {
+                entry.setTitle(title);
+                entry.setBody(body);
+            }
+        }
     }
 
     @Override

@@ -42,7 +42,7 @@ public class DiaryTest {
     }
 
     @Test
-    public void test_To_AddThreeDiaryAndGetOneByUserName() {
+    public void test_To_Save_ThreeDiaryAndGetOneByUserName() {
         Diary diary = new Diary("Miracle", "correctPassword");
         Diary secondDiary = new Diary("Gabriel", "correctPassword");
         Diary thirdDiary = new Diary("Joseph", "correctPassword");
