@@ -1,7 +1,6 @@
 package repositories;
 
 import models.Diary;
-import models.Entry;
 
 import java.util.ArrayList;
 import java.util.List;

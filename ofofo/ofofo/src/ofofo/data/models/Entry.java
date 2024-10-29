@@ -3,16 +3,27 @@ package models;
 import java.time.LocalDate;
 
 public class Entry {
+    private int id;
     private String title;
     private String body;
-    private int Id;
-    private LocalDate date;
+    private LocalDate dateOfCreation;
+    private String diaryId;
 
-    public Entry(String title, String body, int Id) {
+
+    public Entry(String diaryId, int id, String title, String body) {
+        this.diaryId = diaryId;
+        this.id = id;
         this.title = title;
         this.body = body;
-        this.Id = Id;
-        this.date = LocalDate.now();
+        this.dateOfCreation = LocalDate.now();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -31,19 +42,19 @@ public class Entry {
         this.body = body;
     }
 
-    public int getId() {
-        return Id;
+    public LocalDate getDateOfCreation() {
+        return dateOfCreation;
     }
 
-    public void setId(int id) {
-        Id = id;
+    public void setDateOfCreation(LocalDate dateOfCreation) {
+        this.dateOfCreation = dateOfCreation;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public String getDiaryId() {
+        return diaryId;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDiaryId(String diaryId) {
+        this.diaryId = diaryId;
     }
 }

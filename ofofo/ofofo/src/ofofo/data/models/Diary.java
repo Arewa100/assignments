@@ -1,7 +1,5 @@
 package models;
 
-import java.util.List;
-
 public class Diary {
     private String userName;
     private String password;

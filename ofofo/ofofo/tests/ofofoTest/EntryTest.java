@@ -1,117 +1,95 @@
 package ofofoTest;
 
 import models.Entry;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import repositories.EntryRepository;
 import repositories.RepositoryForEntry;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class EntryTest {
-    private  final EntryRepository entryRepository = new RepositoryForEntry();
+    private EntryRepository entryRepository;
 
-    @Test
-    public void test_That_Entry_Is_Empty() {
-        assertEquals(0, entryRepository.count());
+    @BeforeEach
+    public void setUp() {
+        entryRepository = new RepositoryForEntry();
     }
 
     @Test
-    public void test_That_Entry_Can_Save_Count_Is_1() {
-        Entry entry = new Entry("title" , "body", 1);
-        entryRepository.save(entry);
-        assertEquals(1, entryRepository.count());
+    public void testThatEntryRepositoryIsEmpty() {
+        assertEquals(0, entryRepository.countNumberOfEntries());
     }
 
     @Test
-    public void test_To_Save_Entry_And_Find_The_Entry_By_Id() {
-        Entry entry = new Entry("title" , "body", 1);
+    public void testToSaveEntryToEntryRepositoryCountShouldBeOne() {
+        Entry entry = new Entry("firstUser", 1, "title", "body");
         entryRepository.save(entry);
-        Entry foundEntry = entryRepository.findById(1);
-        assertEquals("title", foundEntry.getTitle());
+        assertEquals(1, entryRepository.countNumberOfEntries());
     }
 
     @Test
-    public void test_To_Save_Two_Entry_And_Find_The_Entries_By_Id() {
-        Entry entry = new Entry("title" , "body", 1);
+    public void testToSaveEntryAndFindEntryByIdAndUserName() {
+        Entry entry = new Entry("firstUser", 1, "title", "body");
         entryRepository.save(entry);
-        Entry newEntry = new Entry("title2" , "body", 2);
-        entryRepository.save(newEntry);
-        assertEquals(2, entryRepository.count());
-        Entry foundEntryOne = entryRepository.findById(1);
-        Entry foundEntryTwo = entryRepository.findById(2);
-        assertEquals("title", foundEntryOne.getTitle());
-        assertEquals("title2", foundEntryTwo.getTitle());
+        assertEquals("title", entryRepository.findById("firstUser", 1).getTitle());
     }
 
     @Test
-    public void testTo_Save_One_EntryAnd_Find_The_Entry_By_title() {
-        Entry entry = new Entry("title" , "body", 1);
+    public void test_ToSaveTwoEntryAnd_FindThemById () {
+        Entry entry = new Entry("firstUser", 1, "title", "body");
+        Entry seondEntry = new Entry("firstUser", 2, "title2", "body2");
         entryRepository.save(entry);
-        Entry foundEntry = entryRepository.findByTitle("title");
-        assertEquals("title", foundEntry.getTitle());
+        entryRepository.save(seondEntry);
+        assertEquals("title", entryRepository.findById("firstUser", 1).getTitle());
+        assertEquals("title2", entryRepository.findById("firstUser", 2).getTitle());
+
+    }
+    @Test
+    public void testToSaveEntryAndFindEntryByTitle() {
+        Entry entry = new Entry("firstUser", 1, "title", "body");
+        entryRepository.save(entry);
+        assertEquals("body", entryRepository.findByTitle("firstUser", "title").getBody());
     }
 
     @Test
-    public void testTSave_TwoEntryAndFind_The_Entries_By_title() {
-        Entry entry = new Entry("title" , "body", 1);
-        Entry newEntry = new Entry("title2" , "body", 2);
+    public void testToSaveTwoEntryWithSameTitleAndFindByTitle_Output_Is_FirstTitle() {
+        Entry entry = new Entry("firstUser", 1, "title", "body");
+        Entry secondEntry = new Entry("firstUser", 2, "title", "body2");
         entryRepository.save(entry);
-        entryRepository.save(newEntry);
-        assertEquals(2, entryRepository.count());
-        Entry foundEntryOne = entryRepository.findByTitle("title");
-        Entry foundEntryTwo = entryRepository.findByTitle("title2");
-        assertEquals("title", foundEntryOne.getTitle());
-        assertEquals("title2", foundEntryTwo.getTitle());
+        entryRepository.save(secondEntry);
+        assertEquals("body", entryRepository.findByTitle("firstUser", "title").getBody());
+        assertEquals("body", entryRepository.findByTitle("firstUser", "title").getBody());
 
     }
 
     @Test
-    public void testToSaveAnEntryAnd_Delete_EntryBy_Title_Number_Of_Entries_Would_Be_Zero() {
-        Entry entry = new Entry("title" , "body", 1);
+    public void testToFindAllEntriesThatBelongToAParticularADiary() {
+        Entry entry = new Entry("firstUser", 1, "firstUserTitle", "body");
+        Entry secondEntry = new Entry("firstUser", 2, "firstUserTitleTwo", "body2");
+        Entry secondUserEntryOne = new Entry("secondUser", 1, "secondUserTitle", "body");
+        Entry secondUserEntryTwo  = new Entry("secondUser", 2, "secondUserTitleTwo", "body2");
         entryRepository.save(entry);
-        entryRepository.delete("title");
-        assertEquals(0, entryRepository.count());
+        entryRepository.save(secondEntry);
+        entryRepository.save(secondUserEntryOne);
+        entryRepository.save(secondUserEntryTwo);
+        assertEquals(4, entryRepository.countNumberOfEntries());
+
+        assertEquals(2, entryRepository.findAll("firstUser").size());
+        assertEquals("firstUserTitle", entryRepository.findAll("firstUser").getFirst().getTitle());
+
+        assertEquals("secondUserTitle", entryRepository.findAll("secondUser").getFirst().getTitle());
+
     }
 
     @Test
-    public void testToAddEntryAndDeleteItByTitle_EntryShouldBeNull() {
-        Entry entry = new Entry("title" , "body", 1);
+    public void testToSaveTwoEntryAndDeleteOne_One_Item_IsRemaining() {
+        Entry entry = new Entry("firstUser", 1, "firstUserTitle", "body");
+        Entry secondEntry = new Entry("firstUser", 2, "firstUserTitleTwo", "body2");
         entryRepository.save(entry);
-        entryRepository.delete("title");
-        assertNull(entryRepository.findByTitle("title"));
-    }
-    @Test
-    public void testToAddEntryAnd_Delete_Entry_By_DeletedById() {
-        Entry entry = new Entry("title" , "body", 1);
-        entryRepository.save(entry);
-        entryRepository.delete(1);
-        assertEquals(0, entryRepository.count());
-    }
-    @Test
-    public void testToAddEntryAndDeleteItById_EntryShouldBeNull() {
-        Entry entry = new Entry("title" , "body", 1);
-        entryRepository.save(entry);
-        entryRepository.delete(1);
-        assertNull(entryRepository.findById(1));
-    }
-
-    @Test
-    public void testToGetDateEntryWasCreated() {
-        Entry entry = new Entry("title" , "body", 1);
-        entryRepository.save(entry);
-        System.out.println(entryRepository.getDate(1));
-    }
-
-    @Test
-    public void testToCreateEntry_And_UpdateTheEntry() {
-        Entry entry = new Entry("title" , "body", 1);
-        entryRepository.save(entry);
-        assertEquals("title", entryRepository.findById(1).getTitle());
-        assertEquals("body", entryRepository.findById(1).getBody());
-        entryRepository.update(1, "newTitle", "newBody");
-        assertEquals("newTitle", entryRepository.findById(1).getTitle());
-        assertEquals("newBody", entryRepository.findById(1).getBody());
+        entryRepository.save(secondEntry);
+        assertEquals(2, entryRepository.countNumberOfEntries());
+        entryRepository.
     }
 
 
