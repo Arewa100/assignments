@@ -90,7 +90,4 @@ public class DiaryTest {
         assertEquals(0, diaryRepository.count());
         assertNull(diaryRepository.findById("Miracle"));
     }
-
-
-
 }

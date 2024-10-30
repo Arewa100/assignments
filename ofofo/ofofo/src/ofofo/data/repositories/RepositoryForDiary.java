@@ -16,11 +16,21 @@ public class RepositoryForDiary implements DiaryRepository{
     }
 
     @Override
+    public Diary createDiary(String username, String password) {
+        return new Diary(username, password);
+    }
+
+    @Override
     public Diary findById(String userName) {
         for (Diary diary : diaries) {
             if(userNameAndIdIsEqual(diary, userName)) return diary;
         }
         return null;
+    }
+
+    @Override
+    public List<Diary> findAll() {
+        return diaries;
     }
 
     private boolean userNameAndIdIsEqual(Diary diary, String userName) {
