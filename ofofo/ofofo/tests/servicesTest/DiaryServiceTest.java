@@ -6,6 +6,7 @@ import services.DiaryServices;
 import services.DiaryServicesImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DiaryServiceTest {
     private DiaryServices diaryServices;
@@ -54,7 +55,14 @@ public class DiaryServiceTest {
         assertEquals(1, diaryServices.numberOfRegisteredDiaries());
     }
 
+
     @Test
-    public void testThatUser
+    public void testT
+//    @Test
+//    public void testForDiaryToCreateEntryWhenDiaryIsNotLoggedIn() {
+//        String feedback = diaryServices.registerDiary("firstUser", "firstUserPassword");
+//        assertEquals("diary registered successfully...", feedback);
+//        assertThrows(IllegalAccessException.class, ()-> f)
+//    }
 
 }
