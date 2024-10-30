@@ -25,6 +25,7 @@ public class RepositoryForEntry implements EntryRepository {
         }
         return null;
     }
+
     private boolean diaryIdAndEntryIdIsValid(String diaryId, int entryId, Entry entry) {
         return entry.getDiaryId().equals(diaryId) && entry.getId() == entryId;
     }

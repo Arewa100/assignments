@@ -31,11 +31,12 @@ public class RepositoryForDiary implements DiaryRepository{
     public void delete(Diary diary) {
         for (int index = 0; index < diaries.size(); index++) {
             Diary currentdDiary = diaries.get(index);
-            if(diaryIsEqualTodiary(currentdDiary, diary)) diaries.remove(diary);
+            if(diaryIsEqualToDiary(currentdDiary, diary)) diaries.remove(diary);
             count--;
         }
     }
-    private boolean diaryIsEqualTodiary(Diary currentDiary, Diary diary) {
+
+    private boolean diaryIsEqualToDiary(Diary currentDiary, Diary diary) {
         return currentDiary.getUserName().equals(diary.getUserName());
     }
 

@@ -103,6 +103,4 @@ public class EntryTest {
         assertEquals("newTitle", entryRepository.findById("firstUser", 1).getTitle());
     }
 
-
-
 }
