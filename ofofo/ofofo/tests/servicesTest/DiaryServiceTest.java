@@ -6,7 +6,6 @@ import services.DiaryServices;
 import services.DiaryServicesImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DiaryServiceTest {
     private DiaryServices diaryServices;
@@ -56,8 +55,8 @@ public class DiaryServiceTest {
     }
 
 
-    @Test
-    public void testT
+//    @Test
+//    public void testT    // this is where i am
 //    @Test
 //    public void testForDiaryToCreateEntryWhenDiaryIsNotLoggedIn() {
 //        String feedback = diaryServices.registerDiary("firstUser", "firstUserPassword");
