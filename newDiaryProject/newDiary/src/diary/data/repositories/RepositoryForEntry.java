@@ -12,9 +12,19 @@ public class RepositoryForEntry implements EntryRepository{
 
 
     @Override
-    public void save(Entry entry) {
-        entries.add(entry);
-        numberOfEntries++;
+    public void save(Entry givenEntry) {
+        Entry entry = findById(givenEntry.getDiaryId(), givenEntry.getEntryId());
+        if(entry != null && entryIdIsSame(entry, givenEntry)) {
+            entry.setTitle(givenEntry.getTitle());
+            entry.setBody(givenEntry.getBody());
+        } else {
+            entries.add(givenEntry);
+            numberOfEntries++;
+        }
+    }
+
+    private boolean entryIdIsSame(Entry entry, Entry givenEntry) {
+        return entry.getEntryId() == (givenEntry.getEntryId());
     }
 
     @Override
@@ -54,7 +64,14 @@ public class RepositoryForEntry implements EntryRepository{
 
     @Override
     public Entry findByTitle(String diaryId, String title) {
+        for(Entry entry : entries){
+            if(titleExists(diaryId, title, entry)) return entry;
+        }
         return null;
+    }
+
+    private boolean titleExists(String diaryId, String title, Entry entry) {
+        return entry.getDiaryId().equals(diaryId) && entry.getTitle().equals(title);
     }
 
     @Override

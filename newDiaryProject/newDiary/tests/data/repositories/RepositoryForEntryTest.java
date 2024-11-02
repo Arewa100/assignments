@@ -30,11 +30,20 @@ public class RepositoryForEntryTest {
      }
     @Test
     public void testToSaveTwoEntries_Count_Is_Two() {
-         Entry entry = new Entry();
-         entryRepository.save(entry);
-         Entry entryTwo = new Entry();
-         entryRepository.save(entryTwo);
-         assertEquals(2, entryRepository.count());
+        Entry entry = new Entry();
+        entry.setEntryId(1);
+        entry.setTitle("title");
+        entry.setBody("body");
+        entry.setDiaryId("Sarah");
+        entryRepository.save(entry);
+        Entry entryTwo = new Entry();
+        entryTwo.setEntryId(2);
+        entryTwo.setTitle("title2");
+        entryTwo.setBody("body2");
+        entryTwo.setDiaryId("Micheal");
+        entryRepository.save(entryTwo);
+        entryRepository.save(entryTwo);
+        assertEquals(2, entryRepository.count());
     }
 
     @Test
@@ -110,13 +119,15 @@ public class RepositoryForEntryTest {
 
     }
     @Test
-    public testToSaveAnExistingEntry_EntryIs_Updated_Count_Is_One() {
+    public void testToSaveAnExistingEntry_EntryIs_Updated_Count_Is_One() {
         Entry entry = new Entry();
         entry.setEntryId(1);
         entry.setTitle("title");
         entry.setBody("body");
         entry.setDiaryId("Sarah");
         entryRepository.save(entry);
+        assertEquals("title", entryRepository.findById("Sarah", 1).getTitle());
+        assertEquals(1, entryRepository.count());
         Entry entryTwo = new Entry();
         entryTwo.setEntryId(1);
         entryTwo.setTitle("title2");
@@ -124,13 +135,36 @@ public class RepositoryForEntryTest {
         entryTwo.setDiaryId("Sarah");
         entryRepository.save(entryTwo);
         assertEquals(1, entryRepository.count());
-        assertEquals(entryTwo.getTitle(), entryRepository.findById("Sarah", 1).getTitle());
+        assertEquals("title2", entryRepository.findById("Sarah", 1).getTitle());
     }
 
+    @Test
+    public void testToFindEntryByTitle() {
+         Entry entry = new Entry();
+         entry.setEntryId(1);
+         entry.setTitle("title");
+         entry.setBody("body");
+         entry.setDiaryId("Sarah");
+         entryRepository.save(entry);
+         assertEquals("title", entryRepository.findByTitle("Sarah", "title").getTitle());
+    }
+    @Test
+    public void testToSaveTwoEntries_FindEntryByTitle_FirstEntry_WithTitle_IsReturned() {
+        Entry entryTwo = new Entry();
+        entryTwo.setEntryId(2);
+        entryTwo.setTitle("title");
+        entryTwo.setBody("body2");
+        entryTwo.setDiaryId("Sarah");
+        entryRepository.save(entryTwo);
+        Entry entry = new Entry();
+        entry.setEntryId(1);
+        entry.setTitle("title");
+        entry.setBody("body");
+        entry.setDiaryId("Sarah");
+        entryRepository.save(entry);
+        Entry foundEntry = entryRepository.findByTitle("Sarah", "title");
+        assertEquals("body2", foundEntry.getBody());
+        assertEquals("title", foundEntry.getTitle());
+    }
 
-//    private int entryId;
-//    private String title;
-//    private String body;
-//    private String diaryId;
-//    private LocalDate dateOfCreation;
 }
