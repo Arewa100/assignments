@@ -20,7 +20,7 @@ public class RepositoryForDiaryTest {
     }
 
     @Test
-    public void testToAddOneDiaryToRepository_Count_Is_One() {
+    public void testToSaveOneDiaryToRepository_Count_Is_One() {
         Diary diary = new Diary();
         assertEquals(0, diaryRepository.count());
         diaryRepository.save(diary);
@@ -28,7 +28,7 @@ public class RepositoryForDiaryTest {
 
     }
     @Test
-    public void testToAddOneDiaryToRepository_Count_Is_Two() {
+    public void testToSaveOneDiaryToRepository_Count_Is_Two() {
         Diary diary = new Diary();
         diaryRepository.save(diary);
         Diary diaryTwo = new Diary();
@@ -37,7 +37,7 @@ public class RepositoryForDiaryTest {
     }
 
     @Test
-    public void testToAddDiaryToRepository_AndCheckIf_It_Exists_ById_Result_Is_True() {
+    public void testToSaveDiaryToRepository_AndCheckIf_It_Exists_ById_Result_Is_True() {
         Diary diary = new Diary();
         diary.setUserName("Sarah");
         diary.setPassword("password");
@@ -51,7 +51,7 @@ public class RepositoryForDiaryTest {
     }
 
     @Test
-    public void testToAdd_2_Diaries_And_Search_A_Diary_That_IsNotAdded_Result_Is_False() {
+    public void testToSave_2_Diaries_And_Search_A_Diary_That_IsNotAdded_Result_Is_False() {
         Diary diary = new Diary();
         diary.setUserName("Sarah");
         diary.setPassword("password");
@@ -65,7 +65,7 @@ public class RepositoryForDiaryTest {
     }
 
     @Test
-    public void testToAdd_2_DiaryAndFindDiaryById() {
+    public void testToSave_2_DiaryAndFindDiaryById() {
         Diary diary = new Diary();
         diary.setUserName("Sarah");
         diary.setPassword("password");
@@ -79,7 +79,7 @@ public class RepositoryForDiaryTest {
         assertEquals("Sarah", foundDiary.getUserName());
     }
     @Test
-    public void testToAdd_2_DiaryAndFindSecond_DiaryById() {
+    public void testToSave_2_DiaryAndFindSecond_DiaryById() {
         Diary diary = new Diary();
         diary.setUserName("Sarah");
         diary.setPassword("password");
@@ -103,7 +103,62 @@ public class RepositoryForDiaryTest {
         assertNull(diaryRepository.findById("Micheal"));
     }
 
-    
+    @Test
+    public void testToSaveADiary_Delete_The_DiaryById_Count_Is_Zero() {
+        Diary diary = new Diary();
+        diary.setUserName("Sarah");
+        diary.setPassword("password");
+        diaryRepository.save(diary);
+        assertEquals(1, diaryRepository.count());
+        diaryRepository.deleteById("Sarah");
+        assertEquals(0, diaryRepository.count());
+    }
 
+    @Test
+    public void testToSaveTwoDiary_Remove_One_Count_Is_1() {
+        Diary diary = new Diary();
+        diary.setUserName("Sarah");
+        diary.setPassword("password");
+        Diary diaryTwo = new Diary();
+        diaryTwo.setUserName("Micheal");
+        diaryTwo.setPassword("password");
+        diaryRepository.save(diary);
+        diaryRepository.save(diaryTwo);
+        assertEquals(2, diaryRepository.count());
+        diaryRepository.deleteById("Sarah");
+        assertEquals(1, diaryRepository.count());
+        assertNull(diaryRepository.findById("Sarah"));
+    }
+
+    @Test
+    public void testToSaveDiaryAndDeleteDiaryByPassingDiaryAs_An_Argument() {
+        Diary diary = new Diary();
+        diary.setUserName("Sarah");
+        diary.setPassword("password");
+        Diary diaryTwo = new Diary();
+        diaryTwo.setUserName("Micheal");
+        diaryTwo.setPassword("password");
+        diaryRepository.save(diary);
+        diaryRepository.save(diaryTwo);
+        assertEquals(2, diaryRepository.count());
+        diaryRepository.delete(diary);
+        assertEquals(1, diaryRepository.count());
+        assertNull(diaryRepository.findById("Sarah"));
+    }
+
+    @Test
+    public void testToSave_2_Diary_Delete_All_Count_Is_0() {
+        Diary diary = new Diary();
+        diary.setUserName("Sarah");
+        diary.setPassword("password");
+        Diary diaryTwo = new Diary();
+        diaryTwo.setUserName("Micheal");
+        diaryTwo.setPassword("password");
+        diaryRepository.save(diary);
+        diaryRepository.save(diaryTwo);
+        assertEquals(2, diaryRepository.count());
+        diaryRepository.deleteAll();
+        assertEquals(0, diaryRepository.count());
+    }
 
 }

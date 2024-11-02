@@ -35,17 +35,21 @@ public class RepositoryForDiary implements DiaryRepository {
 
     @Override
     public void deleteById(String id) {
-
+        Diary diaryToBeRemoved = null;
+        for(Diary diary : diaries) if(diaryExists(diary, id)) diaryToBeRemoved = diary;
+        diaries.remove(diaryToBeRemoved);
     }
 
     @Override
-    public void delete(Diary diary) {
-
+    public void delete(Diary diaryToBeDeleted) {
+        Diary diaryToBeRemoved = null;
+        for(Diary diary: diaries) if(diaryExists(diary, diaryToBeDeleted.getUserName())) diaryToBeRemoved = diary;
+        diaries.remove(diaryToBeRemoved);
     }
 
     @Override
     public void deleteAll() {
-
+        diaries.clear();
     }
 
     @Override
