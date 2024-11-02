@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface EntryRepository {
     void save(Entry entry);
-    boolean existsById(String diaryId, String id);
-    Entry findById(String diaryId, String id);
-    void deleteById(String diaryId, String id);
+    boolean existsById(String diaryId, int id);
+    Entry findById(String diaryId, int id);
+    void deleteById(String diaryId, int id);
     void delete(Entry entry);
     void deleteAll(String diaryId);
     Entry findByTitle(String diaryId, String title);

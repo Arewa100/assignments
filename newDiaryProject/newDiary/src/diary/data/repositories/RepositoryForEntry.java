@@ -18,17 +18,27 @@ public class RepositoryForEntry implements EntryRepository{
     }
 
     @Override
-    public boolean existsById(String diaryId, String id) {
+    public boolean existsById(String diaryId, int id) {
+        for(Entry entry : entries){
+            if(entryExists(diaryId, id, entry)) return true;
+        }
         return false;
     }
 
+    private boolean entryExists(String diaryId, int entryId, Entry entry) {
+        return entry.getDiaryId().equals(diaryId) && entry.getEntryId() == entryId;
+    }
+
     @Override
-    public Entry findById(String diaryId, String id) {
+    public Entry findById(String diaryId, int id) {
+        for(Entry entry : entries){
+            if(entryExists(diaryId, id, entry)) return entry;
+        }
         return null;
     }
 
     @Override
-    public void deleteById(String diaryId, String id) {
+    public void deleteById(String diaryId, int id) {
 
     }
 
