@@ -4,6 +4,7 @@ import data.models.Entry;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RepositoryForEntry implements EntryRepository{
@@ -41,25 +42,37 @@ public class RepositoryForEntry implements EntryRepository{
 
     @Override
     public Entry findById(String diaryId, int id) {
-        for(Entry entry : entries){
-            if(entryExists(diaryId, id, entry)) return entry;
+        for(int index= 0; index < entries.size(); index++){
+            if(entryExists(diaryId, id, entries.get(index))) return entries.get(index);
         }
         return null;
     }
 
     @Override
     public void deleteById(String diaryId, int id) {
-
+        for(int index= 0; index < entries.size(); index++){
+            if(entryExists(diaryId, id, entries.get(index))) entries.remove(entries.get(index));
+        }
+        numberOfEntries--;
     }
 
     @Override
     public void delete(Entry entry) {
-
+        for(int index= 0; index < entries.size(); index++){
+            if(entryExists(entry.getDiaryId(), entry.getEntryId(), entries.get(index))) entries.remove(entries.get(index));
+        }
+        numberOfEntries--;
     }
 
     @Override
     public void deleteAll(String diaryId) {
-
+        for(int index= 0; index < entries.size(); index++){
+            if(entries.get(index).getDiaryId().equals(diaryId)){
+                entries.remove(entries.get(index));
+                numberOfEntries--;
+            }
+        }
+        System.out.println(entries);
     }
 
     @Override
@@ -76,7 +89,11 @@ public class RepositoryForEntry implements EntryRepository{
 
     @Override
     public List<Entry> findAll(String diaryId) {
-        return List.of();
+        List<Entry> foundEntries = new ArrayList<>();
+        for(Entry entry : entries) {
+            if(entry.getDiaryId().equals(diaryId)) foundEntries.add(entry);
+        }
+        return foundEntries;
     }
 
     @Override

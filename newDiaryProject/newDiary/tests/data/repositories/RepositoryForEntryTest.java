@@ -167,4 +167,124 @@ public class RepositoryForEntryTest {
         assertEquals("title", foundEntry.getTitle());
     }
 
+    @Test
+    public void testThatSaveEntriesAndFindAll_ListOfEntryIsReturned() {
+        Entry entryTwo = new Entry();
+        entryTwo.setEntryId(1);
+        entryTwo.setTitle("title");
+        entryTwo.setBody("body2");
+        entryTwo.setDiaryId("Sarah");
+        entryRepository.save(entryTwo);
+        Entry entry = new Entry();
+        entry.setEntryId(2);
+        entry.setTitle("title");
+        entry.setBody("body");
+        entry.setDiaryId("Sarah");
+        entryRepository.save(entry);
+        Entry  entryThree = new Entry();
+        entryThree.setEntryId(1);
+        entryThree.setTitle("title");
+        entryThree.setBody("body");
+        entryThree.setDiaryId("Micheal");
+        entryRepository.save(entryThree);
+        assertEquals(3, entryRepository.count());
+        assertEquals(2, entryRepository.findAll("Sarah").size());
+    }
+
+    @Test
+    public void testToSaveThreeEntryAndDeleteOne_Count_Is_Two() {
+        Entry entryTwo = new Entry();
+        entryTwo.setEntryId(1);
+        entryTwo.setTitle("title");
+        entryTwo.setBody("body2");
+        entryTwo.setDiaryId("Sarah");
+        entryRepository.save(entryTwo);
+        Entry entry = new Entry();
+        entry.setEntryId(2);
+        entry.setTitle("title");
+        entry.setBody("body");
+        entry.setDiaryId("Sarah");
+        entryRepository.save(entry);
+        Entry  entryThree = new Entry();
+        entryThree.setEntryId(1);
+        entryThree.setTitle("title");
+        entryThree.setBody("body");
+        entryThree.setDiaryId("Micheal");
+        entryRepository.save(entryThree);
+        assertEquals(3, entryRepository.count());
+        entryRepository.deleteById("Sarah", 2);
+        assertEquals(2, entryRepository.count());
+    }
+
+    @Test
+    public void testToSaveTwoEntryAndDeleteOneCheckIfItExists_Result_IsFalse() {
+        Entry entryTwo = new Entry();
+        entryTwo.setEntryId(1);
+        entryTwo.setTitle("title");
+        entryTwo.setBody("body2");
+        entryTwo.setDiaryId("Sarah");
+        entryRepository.save(entryTwo);
+        Entry entry = new Entry();
+        entry.setEntryId(2);
+        entry.setTitle("title");
+        entry.setBody("body");
+        entry.setDiaryId("Sarah");
+        entryRepository.save(entry);
+        assertEquals(2, entryRepository.count());
+        assertTrue(entryRepository.existsById("Sarah", 2));
+        entryRepository.deleteById("Sarah", 2);
+        assertFalse(entryRepository.existsById("Sarah", 2));
+        assertEquals(1, entryRepository.count());
+    }
+
+    @Test
+    public void testToDeleteEntryByPassingInEntryAsArgumentCheckIf_It_Exists_Result_Is_False() {
+        Entry entryTwo = new Entry();
+        entryTwo.setEntryId(1);
+        entryTwo.setTitle("title");
+        entryTwo.setBody("body2");
+        entryTwo.setDiaryId("Sarah");
+        entryRepository.save(entryTwo);
+        Entry entry = new Entry();
+        entry.setEntryId(2);
+        entry.setTitle("title");
+        entry.setBody("body");
+        entry.setDiaryId("Sarah");
+        entryRepository.save(entry);
+        assertEquals(2, entryRepository.count());
+        assertTrue(entryRepository.existsById("Sarah", 2));
+        entryRepository.delete(entry);
+        assertFalse(entryRepository.existsById("Sarah", 2));
+        assertEquals(1, entryRepository.count());
+    }
+
+    @Test
+    public void test_ToThreeEntryAndDeleteEntryByDiaryId_AllEntryThatBelongsToTheDiaryIdIsDeleted() {
+        Entry entryTwo = new Entry();
+        entryTwo.setEntryId(1);
+        entryTwo.setTitle("title");
+        entryTwo.setBody("body2");
+        entryTwo.setDiaryId("Sarah");
+        entryRepository.save(entryTwo);
+        Entry entry = new Entry();
+        entry.setEntryId(2);
+        entry.setTitle("title");
+        entry.setBody("body");
+        entry.setDiaryId("Sarah");
+        entryRepository.save(entry);
+        Entry  entryThree = new Entry();
+        entryThree.setEntryId(1);
+        entryThree.setTitle("title");
+        entryThree.setBody("body");
+        entryThree.setDiaryId("Micheal");
+        entryRepository.save(entryThree);
+        assertEquals(3, entryRepository.count());
+        entryRepository.deleteAll("Sarah");
+        assertEquals(1, entryRepository.count());
+        assertFalse(entryRepository.existsById("Sarah", 2));
+        assertFalse(entryRepository.existsById("Sarah", 1));
+        assertTrue(entryRepository.existsById("micheal", 1));
+    }
+
+
 }
