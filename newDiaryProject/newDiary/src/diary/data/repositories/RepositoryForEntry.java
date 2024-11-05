@@ -66,9 +66,10 @@ public class RepositoryForEntry implements EntryRepository{
 
     @Override
     public void deleteAll(String diaryId) {
-        for(int index= 0; index < entries.size(); index++){
-            if(entries.get(index).getDiaryId().equals(diaryId)){
-                entries.remove(entries.get(index));
+        System.out.println(entries);
+        for(Entry entry : entries){
+            if(entry.getDiaryId().equals(diaryId)){
+                entries.remove(entry);
                 numberOfEntries--;
             }
         }
