@@ -259,7 +259,7 @@ public class RepositoryForEntryTest {
     }
 
     @Test
-    public void test_ToThreeEntryAndDeleteEntryByDiaryId_AllEntryThatBelongsToTheDiaryIdIsDeleted() {
+    public void test_ToSaveThreeEntryAndDeleteEntryByDiaryId_AllEntryThatBelongsToTheDiaryIdIsDeleted() {
         Entry entryTwo = new Entry();
         entryTwo.setEntryId(1);
         entryTwo.setTitle("title");
@@ -283,8 +283,6 @@ public class RepositoryForEntryTest {
         assertEquals(1, entryRepository.count());
         assertFalse(entryRepository.existsById("Sarah", 2));
         assertFalse(entryRepository.existsById("Sarah", 1));
-        assertTrue(entryRepository.existsById("micheal", 1));
+        assertTrue(entryRepository.existsById("Micheal", 1));
     }
-
-
 }

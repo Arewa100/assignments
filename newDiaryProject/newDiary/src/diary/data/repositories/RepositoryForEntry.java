@@ -9,7 +9,6 @@ import java.util.List;
 
 public class RepositoryForEntry implements EntryRepository{
     private final List<Entry> entries = new ArrayList<>();
-    private long numberOfEntries;
 
 
     @Override
@@ -20,7 +19,6 @@ public class RepositoryForEntry implements EntryRepository{
             entry.setBody(givenEntry.getBody());
         } else {
             entries.add(givenEntry);
-            numberOfEntries++;
         }
     }
 
@@ -53,7 +51,6 @@ public class RepositoryForEntry implements EntryRepository{
         for(int index= 0; index < entries.size(); index++){
             if(entryExists(diaryId, id, entries.get(index))) entries.remove(entries.get(index));
         }
-        numberOfEntries--;
     }
 
     @Override
@@ -61,19 +58,11 @@ public class RepositoryForEntry implements EntryRepository{
         for(int index= 0; index < entries.size(); index++){
             if(entryExists(entry.getDiaryId(), entry.getEntryId(), entries.get(index))) entries.remove(entries.get(index));
         }
-        numberOfEntries--;
     }
 
     @Override
     public void deleteAll(String diaryId) {
-        System.out.println(entries);
-        for(Entry entry : entries){
-            if(entry.getDiaryId().equals(diaryId)){
-                entries.remove(entry);
-                numberOfEntries--;
-            }
-        }
-        System.out.println(entries);
+        entries.removeIf(entry -> entry.getDiaryId().equals(diaryId));
     }
 
     @Override
@@ -104,6 +93,6 @@ public class RepositoryForEntry implements EntryRepository{
 
     @Override
     public long count() {
-        return numberOfEntries;
+        return entries.size();
     }
 }

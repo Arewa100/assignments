@@ -14,6 +14,7 @@ public class RepositoryForDiaryTest {
         diaryRepository = new RepositoryForDiary();
     }
 
+
     @Test
     public void testThatDiaryRepositoryIsEmpty_Count_Is_Zero() {
         assertEquals(0, diaryRepository.count());
