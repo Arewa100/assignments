@@ -3,17 +3,17 @@ package data.models;
 import java.time.LocalDate;
 
 public class Entry {
-    private int entryId;
+    private long entryId;
     private String title;
     private String body;
     private String diaryId;
     private LocalDate dateOfCreation;
 
-    public int getEntryId() {
+    public long getEntryId() {
         return entryId;
     }
 
-    public void setEntryId(int entryId) {
+    public void setEntryId(long entryId) {
         this.entryId = entryId;
     }
 

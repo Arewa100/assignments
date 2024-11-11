@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface EntryRepository {
     void save(Entry entry);
-    boolean existsById(String diaryId, int id);
-    Entry findById(String diaryId, int id);
-    void deleteById(String diaryId, int id);
+    boolean existsById(String diaryId, long id);
+    Entry findById(String diaryId, long id);
+    void deleteById(String diaryId, long id);
     void delete(Entry entry);
     void deleteAll(String diaryId);
     Entry findByTitle(String diaryId, String title);
     List<Entry> findAll(String diaryId);
-    LocalDate getDate(int entryId);
+    LocalDate getDate(long entryId);
     long count();
 }

@@ -4,7 +4,6 @@ import data.models.Entry;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RepositoryForEntry implements EntryRepository{
@@ -27,19 +26,19 @@ public class RepositoryForEntry implements EntryRepository{
     }
 
     @Override
-    public boolean existsById(String diaryId, int id) {
+    public boolean existsById(String diaryId, long id) {
         for(Entry entry : entries){
             if(entryExists(diaryId, id, entry)) return true;
         }
         return false;
     }
 
-    private boolean entryExists(String diaryId, int entryId, Entry entry) {
+    private boolean entryExists(String diaryId, long entryId, Entry entry) {
         return entry.getDiaryId().equals(diaryId) && entry.getEntryId() == entryId;
     }
 
     @Override
-    public Entry findById(String diaryId, int id) {
+    public Entry findById(String diaryId, long id) {
         for(int index= 0; index < entries.size(); index++){
             if(entryExists(diaryId, id, entries.get(index))) return entries.get(index);
         }
@@ -47,7 +46,7 @@ public class RepositoryForEntry implements EntryRepository{
     }
 
     @Override
-    public void deleteById(String diaryId, int id) {
+    public void deleteById(String diaryId, long id) {
         for(int index= 0; index < entries.size(); index++){
             if(entryExists(diaryId, id, entries.get(index))) entries.remove(entries.get(index));
         }
@@ -87,7 +86,7 @@ public class RepositoryForEntry implements EntryRepository{
     }
 
     @Override
-    public LocalDate getDate(int entryId) {
+    public LocalDate getDate(long entryId) {
         return null;
     }
 
