@@ -67,4 +67,42 @@ public class ServicesForDiaryTest {
         diaryServices.createEntry("Sarah", "titleOne", "bodyOne");
         assertEquals(1, diaryServices.findDiaryById("Sarah").getLastEntryCount());
     }
+
+    @Test
+    public void testToCreateEntryWhenDiaryIsLoggedOut() {
+        diaryServices.registerUser("Sarah", "password");
+        assertEquals("login successful", diaryServices.loginUser("Sarah", "password"));
+        assertEquals(0, diaryServices.findDiaryById("Sarah").getLastEntryCount());
+        diaryServices.createEntry("Sarah", "titleOne", "bodyOne");
+        assertEquals(1, diaryServices.findDiaryById("Sarah").getLastEntryCount());
+        assertEquals("logout successful", diaryServices.logoutUser("Sarah"));
+        assertThrows(DiaryExceptions.class, ()-> diaryServices.createEntry("Sarah", "titleOne", "bodyOne"));
+    }
+
+    @Test
+    public void testToCreateThreeEntries_LastEntryCountIsThree() {
+        diaryServices.registerUser("Sarah", "password");
+        assertEquals("login successful", diaryServices.loginUser("Sarah", "password"));
+        diaryServices.createEntry("Sarah", "titleOne", "bodyOne");
+        diaryServices.createEntry("Sarah", "titleTwo", "bodyTwo");
+        diaryServices.createEntry("Sarah", "titleThree", "bodyThree");
+        assertEquals(3, diaryServices.findDiaryById("Sarah").getLastEntryCount());
+    }
+
+    @Test
+    public void testToCreateDiary_And_DeleteTheDiary_DiaryDeletedSuccessfully() {
+        diaryServices.registerUser("Sarah", "password");
+        assertEquals(1, diaryServices.countNumberOfDiaries());
+        assertEquals("Sarah", diaryServices.findDiaryById("Sarah").getUserName());
+        assertEquals("diary deleted successfully", diaryServices.deleteDiaryById("Sarah"));
+        assertThrows(DiaryExceptions.class, ()-> diaryServices.findDiaryById("Sarah"));
+        assertEquals(0, diaryServices.countNumberOfDiaries());
+    }
+
+    @Test
+    public void test_to_Delete_A_DiaryThatDoesNotExist() {
+        diaryServices.registerUser("Sarah", "password");
+        assertEquals(1, diaryServices.countNumberOfDiaries());
+        assertThrows(DiaryExceptions.class, ()-> diaryServices.deleteDiaryById("Micheal"));
+    }
 }

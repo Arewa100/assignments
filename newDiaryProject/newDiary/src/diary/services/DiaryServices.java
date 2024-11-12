@@ -11,5 +11,6 @@ public interface DiaryServices {
     String logoutUser(String username);
     Diary findDiaryById(String username);
     void createEntry(String username, String title, String body);
+    String deleteDiaryById(String username);
     long countNumberOfDiaries();
 }

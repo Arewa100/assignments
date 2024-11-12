@@ -37,11 +37,13 @@ public class ServicesForDiary implements DiaryServices {
 
     @Override
     public String logoutUser(String username) {
+        findDiaryById(username).setLocked(true);
         return "logout successful";
     }
 
     @Override
     public Diary findDiaryById(String username) {
+        if(diaryRepository.findById(username) == null ) throw new DiaryExceptions("diary not found");
         return diaryRepository.findById(username);
     }
 
@@ -51,6 +53,14 @@ public class ServicesForDiary implements DiaryServices {
         validateIfDiaryIsLoggedIn(username);
         entryServices.createEntry(username, title, body,generateEntryCount(username) + 1);
         diaryRepository.findById(username).setLastEntryCount(generateEntryCount(username) + 1);
+    }
+
+    @Override
+    public String deleteDiaryById(String username) {
+        if(diaryRepository.findById(username) == null ) throw new DiaryExceptions("diary not found");
+        diaryRepository.deleteById(username);
+        numberOfRegisteredDiary--;
+        return "diary deleted successfully";
     }
 
     private long generateEntryCount(String username) {

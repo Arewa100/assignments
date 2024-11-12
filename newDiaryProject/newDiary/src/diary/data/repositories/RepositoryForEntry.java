@@ -94,4 +94,10 @@ public class RepositoryForEntry implements EntryRepository{
     public long count() {
         return entries.size();
     }
+
+//    @Override
+//    public String toString() {
+//        StringBuilder stringBuilder = new StringBuilder("{entries: ");
+//        findById(username)
+//    }
 }
