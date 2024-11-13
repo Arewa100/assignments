@@ -21,7 +21,7 @@ public class ServicesForEntryTest {
 
     @Test
     public void test_To_CreateEntry_EntryCountIs_One() {
-        entryServices.createEntry("Miracle", "title", "body", 1);
+        assertEquals("entry created successfully", entryServices.createEntry("Miracle", "title", "body", 1));
         assertEquals(1, entryServices.countNumberOfEntries());
     }
 

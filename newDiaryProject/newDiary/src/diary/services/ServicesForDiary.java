@@ -14,7 +14,7 @@ public class ServicesForDiary implements DiaryServices {
 
     @Override
     public String registerUser(String username, String password) {
-        if (diaryRepository.existsById(username)) throw new DiaryExceptions("registration failed. user exists...");
+        if(diaryRepository.existsById(username)) throw new DiaryExceptions("registration failed. user exists...");
         createNewDiary(username, password);
         return "diary registered successfully";
     }
@@ -37,6 +37,7 @@ public class ServicesForDiary implements DiaryServices {
 
     @Override
     public String logoutUser(String username) {
+        if(findDiaryById(username).isLocked()) throw new DiaryExceptions("user not logged in");
         findDiaryById(username).setLocked(true);
         return "logout successful";
     }
@@ -48,11 +49,12 @@ public class ServicesForDiary implements DiaryServices {
     }
 
     @Override
-    public void createEntry(String username, String title, String body) {
+    public String createEntry(String username, String title, String body) {
         validateIfUserExists(username);
         validateIfDiaryIsLoggedIn(username);
         entryServices.createEntry(username, title, body,generateEntryCount(username) + 1);
         diaryRepository.findById(username).setLastEntryCount(generateEntryCount(username) + 1);
+        return "entry created successfully";
     }
 
     @Override

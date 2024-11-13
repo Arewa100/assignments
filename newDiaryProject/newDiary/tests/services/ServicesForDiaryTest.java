@@ -73,7 +73,7 @@ public class ServicesForDiaryTest {
         diaryServices.registerUser("Sarah", "password");
         assertEquals("login successful", diaryServices.loginUser("Sarah", "password"));
         assertEquals(0, diaryServices.findDiaryById("Sarah").getLastEntryCount());
-        diaryServices.createEntry("Sarah", "titleOne", "bodyOne");
+        assertEquals("entry created successfully", diaryServices.createEntry("Sarah", "titleOne", "bodyOne"));
         assertEquals(1, diaryServices.findDiaryById("Sarah").getLastEntryCount());
         assertEquals("logout successful", diaryServices.logoutUser("Sarah"));
         assertThrows(DiaryExceptions.class, ()-> diaryServices.createEntry("Sarah", "titleOne", "bodyOne"));
