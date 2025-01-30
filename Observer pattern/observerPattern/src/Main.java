@@ -1,5 +1,5 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Subject subject = new Subject();
@@ -7,8 +7,16 @@ public class Main {
         Observer observer2 = new ConcreteObserver("observer 2");
         subject.addObserver(observer);
         subject.addObserver(observer2);
+        while(true){
+            subject.setState(input("enter update: "));
+        }
 
-        subject.setState("this is working");
+    }
 
+
+    public static String input(String prompt) {
+        System.out.println(prompt);
+        Scanner input = new Scanner(System.in);
+        return input.nextLine();
     }
 }
